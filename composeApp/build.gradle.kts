@@ -18,7 +18,6 @@ kotlin {
     }
 
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -46,7 +45,9 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
             implementation(compose.runtime)
+            implementation(compose.material)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
 
             implementation(libs.koin.compose)
