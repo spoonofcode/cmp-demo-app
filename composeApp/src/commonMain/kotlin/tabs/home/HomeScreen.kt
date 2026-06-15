@@ -8,16 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 
-class HomeScreen : Screen {
+class HomeScreen {
 
     @Composable
-    override fun Content() {
-        val navigator: Navigator = LocalNavigator.currentOrThrow
+    fun Content(onNavigateToDetails: (id: Int) -> Unit) {
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -27,7 +22,7 @@ class HomeScreen : Screen {
             Text(text = "Home")
 
             Button(onClick = {
-                navigator.push(DetailsScreen(id = 1))
+                onNavigateToDetails(1)
             }) {
                 Text(text = "Go to example details")
             }

@@ -15,26 +15,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 
 data class DetailsScreen(
     val id: Int,
-) : Screen {
+) {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    override fun Content() {
-        val navigator: Navigator = LocalNavigator.currentOrThrow
+    fun Content(onBack: () -> Unit) {
 
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text("Details") },
                     navigationIcon = {
-                        Button(onClick = { navigator.pop() }) {
+                        Button(onClick = { onBack() }) {
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
                                 contentDescription = "Back",

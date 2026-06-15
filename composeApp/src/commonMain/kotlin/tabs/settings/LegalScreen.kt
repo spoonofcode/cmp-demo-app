@@ -14,25 +14,19 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 
-class LegalScreen : Screen {
+class LegalScreen {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    override fun Content() {
-
-        val navigator: Navigator = LocalNavigator.currentOrThrow
+    fun Content(onBack: () -> Unit) {
 
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text("Legal") },
                     navigationIcon = {
-                        Button(onClick = { navigator.pop() }) {
+                        Button(onClick = { onBack() }) {
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
                                 contentDescription = "Back",
