@@ -28,15 +28,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cafe.adriel.voyager.core.screen.Screen
-import core.ui.ext.koinViewModel
 import model.Task
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
-class TaskOverviewScreen : Screen {
+class TaskOverviewScreen {
 
+    @OptIn(KoinExperimentalAPI::class)
     @Composable
-    override fun Content() {
+    fun Content() {
         val viewModel = koinViewModel<TaskOverviewViewModel>()
         val viewState by viewModel.viewState.collectAsState()
 
