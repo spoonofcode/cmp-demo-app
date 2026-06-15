@@ -48,7 +48,6 @@ captures/
 # Ignore platform specific build folders
 # Modify as needed based on your project structure
 **/build/
-**/gradle/wrapper/gradle-wrapper.jar
 
 # Android
 local.properties
