@@ -1,4 +1,4 @@
-rootProject.name = "KotlinMultiplatformDemoApp"
+rootProject.name = "CMPDemoApp"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

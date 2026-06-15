@@ -1,9 +1,9 @@
-package com.spoonofcode.kotlinmultiplatformdemoapp
+package com.spoonofcode.cmpdemoapp
 
 import KoinInitializer
 import android.app.Application
 
-class KMPDemoApp : Application() {
+class CMPDemoApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

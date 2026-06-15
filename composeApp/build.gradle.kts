@@ -51,6 +51,9 @@ kotlin {
             implementation(compose.ui)
 
             implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.core)
+            implementation(libs.koin.core.viewmodel)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.ktor.client.content.negotiation)
@@ -65,7 +68,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.spoonofcode.kotlinmultiplatformdemoapp"
+    namespace = "com.spoonofcode.cmpdemoapp"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -73,7 +76,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "com.spoonofcode.kotlinmultiplatformdemoapp"
+        applicationId = "com.spoonofcode.cmpdemoapp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
