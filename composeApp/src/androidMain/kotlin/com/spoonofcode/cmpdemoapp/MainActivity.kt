@@ -1,4 +1,4 @@
-package com.spoonofcode.kotlinmultiplatformdemoapp
+package com.spoonofcode.cmpdemoapp
 
 import App
 import android.os.Bundle
