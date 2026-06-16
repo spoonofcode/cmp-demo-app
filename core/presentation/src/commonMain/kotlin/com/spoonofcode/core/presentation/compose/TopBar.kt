@@ -21,13 +21,13 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 fun TopBar(
     backNavigationEnable: Boolean,
-    topAppBarTitle: StringResource,
+    topAppBarTitle: String,
     navigationBackAction: () -> Unit,
     iconBarActions: List<TopBarAction>,
 ) {
     CenterAlignedTopAppBar(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
-        title = { Texts.TLB(stringResource(resource = topAppBarTitle)) },
+        title = { Texts.TLB(topAppBarTitle) },
         navigationIcon = if (backNavigationEnable) {
             {
                 IconButton(onClick = navigationBackAction) {

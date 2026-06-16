@@ -52,7 +52,7 @@ kotlin {
                 implementation(projects.core.data)
 
                 // TODO #132 Optimize dependencies
-//                implementation(projects.feature.appnavigation)
+                implementation(projects.feature.appnavigation)
             }
         }
 

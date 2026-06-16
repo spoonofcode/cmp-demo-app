@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import cafe.adriel.voyager.navigator.internal.BackHandler
 import com.spoonofcode.core.presentation.compose.ErrorView
 import com.spoonofcode.core.presentation.compose.LoadingView
 import com.spoonofcode.core.presentation.compose.Paddings
@@ -77,10 +76,8 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         Column(modifier = Modifier.padding(vertical = defaultTopBarTopPadding)) {
             TopBar(
                 backNavigationEnable = backNavigationEnable,
-                topAppBarTitle = provideTopAppBarTitle(),
+                topAppBarTitle = provideTopAppBarTitle() ?: "",
                 navigationBackAction = navigationBackAction,
-                navigationBackIcon = provideNavigationBackIcon(),
-                colors = provideTopBarColors(),
                 iconBarActions = provideTopBarActions(onAction)
             )
         }
@@ -153,19 +150,15 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         val customBackAction = provideNavigationBackAction(viewModel::onAction)
         val navigationBackAction = customBackAction ?: { viewModel.navigateBack() }
 
-        BackHandler(true) {
-            if (backOSButtonEnable) {
-                navigationBackAction()
-            }
-        }
+//        BackHandler(true) {
+//            if (backOSButtonEnable) {
+//                navigationBackAction()
+//            }
+//        }
 
         setSnackbarHostState(snackbarHostState, viewModel.snackbarEvent)
 
         provideViewEvents(viewModel.viewEvent, viewModel::onAction)
-
-        HandleSessionEvents(
-            onExtendSession = { viewModel.extendSession() },
-            onLogoutNow = { viewModel.logoutNow() })
 
         ContentView(
             snackbarHostState = snackbarHostState,
@@ -191,7 +184,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
                     hostState = snackbarHostState, snackbar = { snackbarData ->
                         Snackbar(
                             snackbarData = snackbarData,
-                            bottomExtraPadding = snackbarBottomExtraPadding
                         )
                     })
             },

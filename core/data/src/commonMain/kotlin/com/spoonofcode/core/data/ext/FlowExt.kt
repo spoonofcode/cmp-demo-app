@@ -1,6 +1,5 @@
 package com.spoonofcode.core.data.ext
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -62,16 +61,16 @@ fun <T> Flow<T>.stateInWhileSubscribed(
 ): StateFlow<T> = this
     .onStart { onStart() }
     .onEach { state ->
-        Log.d(javaClass.name, "New flow state: $state")
+//        Log.d(javaClass.name, "New flow state: $state")
         onStateChanged(state)
     }
     .onCompletion { cause ->
         if (cause != null && cause !is CancellationException) {
-            Log.e(
-                javaClass.name,
-                "Flow completed with an unexpected error: ${cause.message}",
-                cause
-            )
+//            Log.e(
+//                javaClass.name,
+//                "Flow completed with an unexpected error: ${cause.message}",
+//                cause
+//            )
         } else {
             onCompletion(cause)
         }

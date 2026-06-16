@@ -41,6 +41,18 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.lifecycle.viewmodel.compose)
             implementation(libs.navigation.compose)
+
+            implementation(projects.feature.home.data)
+            implementation(projects.feature.home.domain)
+            implementation(projects.feature.home.presentation)
+
+            implementation(projects.feature.profile.data)
+            implementation(projects.feature.profile.domain)
+            implementation(projects.feature.profile.presentation)
+
+            implementation(projects.feature.task.data)
+            implementation(projects.feature.task.domain)
+            implementation(projects.feature.task.presentation)
         }
     }
 }

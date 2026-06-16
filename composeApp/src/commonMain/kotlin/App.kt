@@ -97,7 +97,7 @@ fun App() {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 composable<Screen.Home> {
-                    TaskOverviewScreen().Content()
+                    HomeScreen()
                 }
                 composable<Screen.Settings> {
                     SettingsScreen().Content(
