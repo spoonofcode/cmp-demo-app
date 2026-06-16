@@ -48,10 +48,8 @@ class CmpFeatureConventionPlugin : Plugin<Project> {
                         // Lifecycle & ViewModel
                         implementation(libs.findLibrary("lifecycle-viewmodel-compose").get())
 
-                        // Navigation (Voyager)
-                        implementation(libs.findLibrary("voyager-navigator").get())
-                        implementation(libs.findLibrary("voyager-tab-navigator").get())
-                        implementation(libs.findLibrary("voyager-transitions").get())
+                        // Navigation
+                        implementation(libs.findLibrary("navigation-compose").get())
 
                         // Dependency Injection (Koin)
                         implementation(libs.findLibrary("koin-core").get())
