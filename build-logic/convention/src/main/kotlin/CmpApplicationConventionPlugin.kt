@@ -13,10 +13,10 @@ class CmpApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             applyPlugin("convention-android-application-compose")
-            applyPlugin("kotlinMultiplatform")
-            applyPlugin("jetbrainsCompose")
+            applyPlugin("kotlin-multiplatform")
+            applyPlugin("compose-multiplatform")
             applyPlugin("compose-compiler")
-            applyPlugin("kotlinxSerialization")
+            applyPlugin("kotlin-serialization")
 
             configureAndroidTarget()
             configureIosTargets(baseName = pathToFrameworkName())

@@ -1,12 +1,13 @@
 [versions]
 agp = "9.2.1"
-androidTools = "32.2.0"
+androidTools = "32.2.1"
 androidCompileSdk = "36"
 androidMinSdk = "30"
 androidTargetSdk = "36"
 projectApplicationId = "com.spoonofcode.cmpdemoapp"
 projectVersionCode = "1"
 projectVersionName = "1.0.0"
+androidx-compose-bom = "2025.02.00"
 androidx-activityCompose = "1.13.0"
 androidx-appcompat = "1.7.1"
 androidx-constraintlayout = "2.2.1"
@@ -15,6 +16,7 @@ androidx-espresso-core = "3.7.0"
 androidx-test-junit = "1.3.0"
 compose-plugin = "1.11.1"
 calfPermissions = "0.11.0"
+compottie = "2.1.0"
 ksafe = "1.8.1"
 ksafeCompose = "1.8.1"
 junit = "4.13.2"
@@ -64,17 +66,15 @@ jetbrains-compose-components-resources = { module = "org.jetbrains.compose.compo
 jetbrains-compose-material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "compose-plugin" }
 jetbrains-compose-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "compose-plugin" }
 
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
 android-desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version = "2.1.5" }
 compose-icons-fontawesome = { module = "br.com.devsrsouza.compose.icons:font-awesome", version = "1.1.1" }
-compottie = { module = "io.github.alexzhiruev:compottie", version = "2.0.0-rc02" }
-compottie-dot = { module = "io.github.alexzhiruev:compottie-dot", version = "2.0.0-rc02" }
-compottie-network = { module = "io.github.alexzhiruev:compottie-network", version = "2.0.0-rc02" }
+compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
+compottie-dot = { module = "io.github.alexzhirkevich:compottie-dot", version.ref = "compottie" }
+compottie-network = { module = "io.github.alexzhirkevich:compottie-network", version.ref = "compottie" }
 landscapist-coil = { module = "com.github.skydoves:landscapist-coil3", version = "2.4.7" }
 connectivity-core = { module = "dev.jordond.connectivity:connectivity-core", version = "1.1.2" }
 connectivity-device = { module = "dev.jordond.connectivity:connectivity-device", version = "1.1.2" }
-voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version = "1.1.0-beta03" }
-voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version = "1.1.0-beta03" }
-voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version = "1.1.0-beta03" }
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }

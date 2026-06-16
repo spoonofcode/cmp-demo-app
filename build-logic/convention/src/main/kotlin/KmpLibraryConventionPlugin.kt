@@ -14,9 +14,9 @@ class KmpLibraryConventionPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                applyPlugin("androidLibrary")
-                applyPlugin("kotlinMultiplatform")
-                applyPlugin("kotlinxSerialization")
+                applyPlugin("android-library")
+                applyPlugin("kotlin-multiplatform")
+                applyPlugin("kotlin-serialization")
             }
 
             configureKotlinMultiplatform()

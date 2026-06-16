@@ -7,12 +7,11 @@ plugins {
 group = "com.spoonofcode.convention.buildlogic"
 
 dependencies {
-    implementation(libs.android.gradle.plugin)
-    implementation(libs.android.tools.common)
-    implementation(libs.kotlin.gradle.plugin)
-    implementation(libs.kotlin.serialization.gradle.plugin)
-    implementation(libs.compose.gradle.plugin)
-    implementation(libs.ksp.gradle.plugin)
+    compileOnly(libs.android.gradle.plugin)
+    compileOnly(libs.android.tools.common)
+    compileOnly(libs.kotlin.gradle.plugin)
+    compileOnly(libs.compose.gradle.plugin)
+    compileOnly(libs.ksp.gradle.plugin)
     implementation(libs.buildkonfig.gradle.plugin)
     implementation(libs.buildkonfig.compiler)
 }

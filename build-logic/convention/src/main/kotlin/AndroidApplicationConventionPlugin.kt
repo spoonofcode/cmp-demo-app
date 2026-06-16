@@ -10,7 +10,7 @@ class AndroidApplicationConventionPlugin: Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
-            applyPlugin("androidApplication")
+            applyPlugin("android-application")
 
             extensions.configure<ApplicationExtension> {
                 namespace = "com.spoonofcode.poa"

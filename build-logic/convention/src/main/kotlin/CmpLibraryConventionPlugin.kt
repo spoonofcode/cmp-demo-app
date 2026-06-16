@@ -12,7 +12,7 @@ class CmpLibraryConventionPlugin: Plugin<Project> {
             with(pluginManager) {
                 applyPlugin("convention-kmp-library")
                 applyPlugin("compose-compiler")
-                applyPlugin("jetbrainsCompose")
+                applyPlugin("compose-multiplatform")
             }
 
             dependencies {
