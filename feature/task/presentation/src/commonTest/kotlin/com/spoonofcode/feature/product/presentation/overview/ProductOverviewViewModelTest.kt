@@ -7,7 +7,7 @@ import com.spoonofcode.core.presentation.test.base.BaseViewModelTest
 import com.spoonofcode.feature.appnavigation.ProductModuleRoute
 import com.spoonofcode.feature.task.data.test.ProductMockData.PRODUCTS
 import com.spoonofcode.feature.task.data.test.ProductMockData.PRODUCT_1
-import com.spoonofcode.feature.task.domain.repository.ProductRepository
+import com.spoonofcode.feature.task.domain.repository.TaskRepository
 import com.spoonofcode.feature.task.presentation.di.productPresentationTestModule
 import dev.mokkery.matcher.any
 import dev.mokkery.verifySuspend
@@ -23,13 +23,13 @@ import kotlin.test.assertEquals
 class ProductOverviewViewModelTest : BaseViewModelTest() {
 
     private lateinit var viewModel: ProductOverviewViewModel
-    private lateinit var productRepository: ProductRepository
+    private lateinit var taskRepository: TaskRepository
 
     @BeforeTest
     override fun beforeTest() {
         modules = arrayOf(productPresentationTestModule)
         super.beforeTest()
-        productRepository = getKoin().get()
+        taskRepository = getKoin().get()
         viewModel = getSut()
     }
 
@@ -70,7 +70,7 @@ class ProductOverviewViewModelTest : BaseViewModelTest() {
         }
 
         verifySuspend {
-            productRepository.getUserProducts()
+            taskRepository.getUserProducts()
         }
     }
 

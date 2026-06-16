@@ -6,7 +6,7 @@ import com.spoonofcode.core.presentation.base.ViewState
 import com.spoonofcode.core.presentation.test.base.BaseViewModelTest
 import com.spoonofcode.feature.appnavigation.ProductModuleRoute
 import com.spoonofcode.feature.task.data.test.ProductMockData.PRODUCT_1
-import com.spoonofcode.feature.task.domain.repository.ProductRepository
+import com.spoonofcode.feature.task.domain.repository.TaskRepository
 import com.spoonofcode.feature.task.presentation.di.productPresentationTestModule
 import dev.mokkery.answering.returns
 import dev.mokkery.everySuspend
@@ -25,13 +25,13 @@ import kotlin.test.assertEquals
 class ProductDetailsViewModelTest : BaseViewModelTest() {
 
     private lateinit var viewModel: ProductDetailsViewModel
-    private lateinit var productRepository: ProductRepository
+    private lateinit var taskRepository: TaskRepository
 
     @BeforeTest
     override fun beforeTest() {
         modules = arrayOf(productPresentationTestModule)
         super.beforeTest()
-        productRepository = getKoin().get()
+        taskRepository = getKoin().get()
         viewModel = getSut()
     }
 
@@ -71,13 +71,13 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
         }
 
         verifySuspend {
-            productRepository.getProduct(PRODUCT_1.id)
+            taskRepository.getProduct(PRODUCT_1.id)
         }
     }
 
     @Test
     fun `init view error`() = runTest {
-        everySuspend { productRepository.getProduct(any()) } returns
+        everySuspend { taskRepository.getProduct(any()) } returns
                 Result.failure(Exception("not found"))
 
         viewModel.viewState.test {
@@ -95,7 +95,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
         }
 
         verifySuspend {
-            productRepository.getProduct(PRODUCT_1.id)
+            taskRepository.getProduct(PRODUCT_1.id)
         }
     }
 
@@ -122,7 +122,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
         advanceUntilIdle()
 
         verifySuspend {
-            productRepository.addProductToUser(PRODUCT_1.id)
+            taskRepository.addProductToUser(PRODUCT_1.id)
         }
 
         verifySuspend {
@@ -132,7 +132,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
 
     @Test
     fun `add product to user error`() = runTest {
-        everySuspend { productRepository.addProductToUser(any()) } returns
+        everySuspend { taskRepository.addProductToUser(any()) } returns
                 Result.failure(Exception("add product to user error"))
 
         viewModel.onAction(ProductDetailsViewAction.InitView(PRODUCT_1.id))
@@ -168,7 +168,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
         advanceUntilIdle()
 
         verifySuspend {
-            productRepository.addProductToUser(PRODUCT_1.id)
+            taskRepository.addProductToUser(PRODUCT_1.id)
         }
 
         verifySuspend(mode = exactly(0)) {
@@ -212,7 +212,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
         advanceUntilIdle()
 
         verifySuspend {
-            productRepository.deleteProductFromUser(any())
+            taskRepository.deleteProductFromUser(any())
         }
 
         verifySuspend {
@@ -222,7 +222,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
 
     @Test
     fun `delete product from user error`() = runTest {
-        everySuspend { productRepository.deleteProductFromUser(any()) } returns
+        everySuspend { taskRepository.deleteProductFromUser(any()) } returns
                 Result.failure(Exception("delete product error"))
 
         viewModel.onAction(ProductDetailsViewAction.InitView(PRODUCT_1.id))
@@ -254,7 +254,7 @@ class ProductDetailsViewModelTest : BaseViewModelTest() {
         advanceUntilIdle()
 
         verifySuspend {
-            productRepository.deleteProductFromUser(any())
+            taskRepository.deleteProductFromUser(any())
         }
 
         verifySuspend(mode = exactly(0)) {
