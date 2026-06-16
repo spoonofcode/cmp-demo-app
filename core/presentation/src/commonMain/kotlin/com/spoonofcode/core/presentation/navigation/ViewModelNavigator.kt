@@ -1,6 +1,6 @@
 package com.spoonofcode.core.presentation.navigation
 
-import cafe.adriel.voyager.core.screen.Screen
+import androidx.navigation3.runtime.NavKey
 import kotlinx.coroutines.flow.SharedFlow
 import kotlin.reflect.KClass
 
@@ -9,7 +9,7 @@ interface ViewModelNavigator {
 
     suspend fun pop()
     suspend fun popToRoot()
-    suspend fun <T : Screen> popUpTo(screenClass: KClass<T>)
-    suspend fun push(screen: Screen)
-    suspend fun replaceAll(screens: List<Screen>)
+    suspend fun <T : NavKey> popUpTo(routeClass: KClass<T>)
+    suspend fun push(route: NavKey)
+    suspend fun replace(route: NavKey)
 }

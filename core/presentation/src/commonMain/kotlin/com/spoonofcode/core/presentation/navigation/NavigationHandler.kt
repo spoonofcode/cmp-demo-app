@@ -2,7 +2,6 @@ package com.spoonofcode.core.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import cafe.adriel.voyager.navigator.Navigator
 import kotlinx.coroutines.flow.SharedFlow
 
 @Composable
@@ -13,14 +12,24 @@ fun NavigationHandler(
     LaunchedEffect(true) {
         navigationFlow.collect { navigationEvent ->
             when (navigationEvent) {
-                NavigationEvent.Pop -> navigator.pop()
-                NavigationEvent.PopToRoot -> navigator.popUntilRoot()
-                is NavigationEvent.PopUpTo<*> ->
-                    navigator.popUntil { navigationEvent.screenClass.isInstance(it) }
-
-                is NavigationEvent.Push -> navigator.push(navigationEvent.screen)
-                is NavigationEvent.ReplaceAll -> navigator.replaceAll(navigationEvent.screens)
+                NavigationEvent.Pop -> navigator.goBack()
+                NavigationEvent.PopToRoot -> navigator.popToRoot()
+                is NavigationEvent.PopUpTo -> navigator.popTo(navigationEvent.routeClass)
+                is NavigationEvent.Push -> navigator.navigate(navigationEvent.route)
+                is NavigationEvent.Replace -> navigator.replace(navigationEvent.route)
+// is NavigationEvent.ReplaceAll -> navigator.replaceAll(navigationEvent.screens)
             }
         }
     }
+}import androidx.navigation3.runtime.NavKey
+import kotlin.reflect.KClass
+
+interface ViewModelNavigator {
+    val navigationEvents: SharedFlow<NavigationEvent>
+
+    suspend fun pop()
+    suspend fun popToRoot()
+    suspend fun <T : NavKey> popUpTo(routeClass: KClass<T>)
+    suspend fun push(route: NavKey)
+    suspend fun replace(route: NavKey)
 }
