@@ -1,7 +1,7 @@
 package com.spoonofcode.core.designsystem.components.snackbar
 
 import androidx.compose.material3.SnackbarDuration
-import com.spoonofcode.core.presentation.helpers.UiText
+import com.spoonofcode.core.designsystem.helpers.UiText
 
 sealed class SnackbarEvent(
     val message: UiText,

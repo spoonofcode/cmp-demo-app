@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.designsystem.components.web
 
 import android.webkit.WebChromeClient
 import android.webkit.WebView

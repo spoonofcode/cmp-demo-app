@@ -1,4 +1,4 @@
-package com.spoonofcode.core.designsystem.components
+package com.spoonofcode.core.designsystem.components.web
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

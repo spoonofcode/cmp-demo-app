@@ -1,5 +1,6 @@
-package com.spoonofcode.core.presentation.web
+package com.spoonofcode.core.designsystem.components.web
 
+import com.spoonofcode.core.designsystem.components.web.UrlOpener
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 

@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.helpers
+package com.spoonofcode.core.designsystem.helpers
 
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.resources.StringResource

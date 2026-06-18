@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.spoonofcode.core.data.ext.DEFAULT_STOP_TIMEOUT_MILLIS
 import com.spoonofcode.core.data.ext.stateInWhileSubscribed
 import com.spoonofcode.core.designsystem.components.snackbar.SnackbarEvent
-import com.spoonofcode.core.presentation.helpers.UiText
+import com.spoonofcode.core.designsystem.helpers.UiText
 import com.spoonofcode.core.presentation.navigation.ViewModelNavigator
 import com.spoonofcode.core.presentation.network.NetworkManager
 import dev.jordond.connectivity.Connectivity

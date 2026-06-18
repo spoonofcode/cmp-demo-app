@@ -6,9 +6,9 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.mohamedrejeb.calf.permissions.ExperimentalPermissionsApi
+import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
+import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.BaseScreen
-import com.spoonofcode.core.presentation.compose.text.Texts
-import com.spoonofcode.core.presentation.compose.appbar.TopBarAction
 import org.koin.compose.viewmodel.koinViewModel
 
 internal class HomeScreen(

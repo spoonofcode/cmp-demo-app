@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.previews
+package com.spoonofcode.core.designsystem.components.previews
 
 import androidx.compose.ui.tooling.preview.Preview
 

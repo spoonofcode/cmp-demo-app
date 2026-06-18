@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose.video
+package com.spoonofcode.core.designsystem.components.video
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

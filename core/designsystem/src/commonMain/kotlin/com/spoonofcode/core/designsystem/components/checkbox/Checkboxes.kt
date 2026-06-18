@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import com.spoonofcode.core.designsystem.components.Spacers
 import com.spoonofcode.core.designsystem.components.text.Texts
+import com.spoonofcode.core.designsystem.components.web.getUrlOpener
 
 object Checkboxes {
     @Composable
