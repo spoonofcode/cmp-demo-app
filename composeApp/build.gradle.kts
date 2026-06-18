@@ -1,32 +1,12 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kover)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.convention.cmp.application)
 }
 
 kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-    }
-
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
@@ -61,13 +41,39 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.lifecycle.viewmodel.compose)
             implementation(libs.navigation.compose)
+            implementation(libs.navigation3.runtime)
+            implementation(libs.navigation3.ui)
+
+            implementation(projects.core.data)
+            implementation(projects.core.firebase.data)
+            implementation(projects.core.firebase.domain)
+            implementation(projects.core.network)
+            implementation(projects.core.nfc)
+            implementation(projects.core.presentation)
+            implementation(projects.core.recaptcha)
+            implementation(projects.core.session.data)
+            implementation(projects.core.session.domain)
+            implementation(projects.core.storage.data)
+
+            implementation(projects.feature.appnavigation)
+            implementation(projects.feature.home.data)
+            implementation(projects.feature.home.domain)
+            implementation(projects.feature.home.presentation)
+
+            implementation(projects.feature.profile.data)
+            implementation(projects.feature.profile.domain)
+            implementation(projects.feature.profile.presentation)
+
+            implementation(projects.feature.task.data)
+            implementation(projects.feature.task.domain)
+            implementation(projects.feature.task.presentation)
         }
     }
 }
 
 android {
     namespace = "com.spoonofcode.cmpdemoapp"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk = 36 // Hardcoded temporarily if accessor fails, but I should use the one from toml if possible
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
@@ -75,8 +81,8 @@ android {
 
     defaultConfig {
         applicationId = "com.spoonofcode.cmpdemoapp"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        minSdk = 30
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
@@ -91,11 +97,10 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     dependencies {
         debugImplementation(compose.uiTooling)
     }
 }
-

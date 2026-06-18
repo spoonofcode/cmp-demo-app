@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960238188791",
+    "project_id": "pow-test-428117",
+    "storage_bucket": "pow-test-428117.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960238188791:android:9635b33d3dbb389b07bbf2",
+        "android_client_info": {
+          "package_name": "com.spoonofcode.cmpdemoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMigORJwQiWcwCGTb2Rq7pdNg6TsmEJtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
