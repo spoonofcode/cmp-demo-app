@@ -35,13 +35,11 @@ internal class HomeScreen(
 
     @OptIn(ExperimentalPermissionsApi::class)
     @Composable
-    override fun provideContent(
+    override fun ColumnScope.ScreenContent(
         viewState: HomeViewState,
         onAction: (HomeViewAction) -> Unit,
-    ): @Composable (ColumnScope.() -> Unit) {
-        return {
-            Texts.BL("HOME")
-        }
+    ) {
+        Texts.BL("HOME")
     }
 
 }

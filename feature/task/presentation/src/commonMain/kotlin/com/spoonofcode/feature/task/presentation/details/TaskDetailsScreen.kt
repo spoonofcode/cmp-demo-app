@@ -63,21 +63,19 @@ internal class TaskDetailsScreen(
     }
 
     @Composable
-    override fun provideContent(
+    override fun ColumnScope.ScreenContent(
         viewState: TaskDetailsViewState,
         onAction: (TaskDetailsViewAction) -> Unit,
-    ): @Composable (ColumnScope.() -> Unit) {
-        return {
-            Texts.BL(
-                viewState.task.id
-            )
-            Texts.BL(
-                viewState.task.name
-            )
-            Texts.BL(
-                viewState.task.description
-            )
-        }
+    ) {
+        Texts.BL(
+            viewState.task.id
+        )
+        Texts.BL(
+            viewState.task.name
+        )
+        Texts.BL(
+            viewState.task.description
+        )
     }
 
 }

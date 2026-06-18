@@ -40,20 +40,18 @@ internal class TaskOverviewScreen(
     override fun provideViewModel() = koinViewModel<TaskOverviewViewModel>()
 
     @Composable
-    override fun provideContent(
+    override fun ColumnScope.ScreenContent(
         viewState: TaskOverviewViewState,
         onAction: (TaskOverviewViewAction) -> Unit,
-    ): @Composable (ColumnScope.() -> Unit) {
-        return {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
-            ) {
-                items(viewState.tasks) { task ->
-                    TaskItem(
-                        item = task,
-                        onClick = { onAction(TaskOverviewViewAction.SelectTask(task.id)) }
-                    )
-                }
+    ) {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
+        ) {
+            items(viewState.tasks) { task ->
+                TaskItem(
+                    item = task,
+                    onClick = { onAction(TaskOverviewViewAction.SelectTask(task.id)) }
+                )
             }
         }
     }
