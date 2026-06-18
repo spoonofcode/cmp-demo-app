@@ -22,40 +22,53 @@ internal fun TaskDetailsScreen(
     StandardScreen(
         viewModel = viewModel,
         title = "TaskDetails",
-        topBarActions = { onAction ->
-            listOf(
-                TopBarAction(
-                    icon = Icons.Default.Edit,
-                    description = "Edit",
-                    onClick = { onAction(TaskDetailsViewAction.EditTask) },
-                ),
-                TopBarAction(
-                    icon = Icons.Default.Delete,
-                    description = "Delete",
-                    onClick = {
-                        onAction(TaskDetailsViewAction.DeleteTask)
-                    }
-                )
-            )
-        },
-        dialogs = { viewState, onAction ->
-            if (viewState.isDeleteTaskDialogVisible) {
-                Dialogs.AlertDialog(
-                    title = "Delete Task",
-                    text = "Are you sure you want to delete this task?",
-                    confirmButtonText = "confirm",
-                    dismissButtonText = "cancel",
-                    confirmAction = { onAction(TaskDetailsViewAction.ConfirmDeleteTask) },
-                    dismissAction = { onAction(TaskDetailsViewAction.CancelDeleteTask) }
-                )
-            }
-        }
+        topBarActions = { onAction -> TopBarActions(onAction) },
+        dialogs = { viewState, onAction -> Dialogs(viewState, onAction) }
     ) { viewState, _ ->
-        Texts.BL(viewState.task.id)
-        Texts.BL(viewState.task.name)
-        Texts.BL(viewState.task.description)
+        Content(viewState)
     }
 }
+
+@Composable
+private fun Content(viewState: TaskDetailsViewState) {
+    Texts.BL(viewState.task.id)
+    Texts.BL(viewState.task.name)
+    Texts.BL(viewState.task.description)
+}
+
+@Composable
+private fun Dialogs(
+    viewState: TaskDetailsViewState,
+    onAction: (TaskDetailsViewAction) -> Unit,
+) {
+    if (viewState.isDeleteTaskDialogVisible) {
+        Dialogs.AlertDialog(
+            title = "Delete Task",
+            text = "Are you sure you want to delete this task?",
+            confirmButtonText = "confirm",
+            dismissButtonText = "cancel",
+            confirmAction = { onAction(TaskDetailsViewAction.ConfirmDeleteTask) },
+            dismissAction = { onAction(TaskDetailsViewAction.CancelDeleteTask) }
+        )
+    }
+}
+
+private fun TopBarActions(
+    onAction: (TaskDetailsViewAction) -> Unit,
+): List<TopBarAction> = listOf(
+    TopBarAction(
+        icon = Icons.Default.Edit,
+        description = "Edit",
+        onClick = { onAction(TaskDetailsViewAction.EditTask) },
+    ),
+    TopBarAction(
+        icon = Icons.Default.Delete,
+        description = "Delete",
+        onClick = {
+            onAction(TaskDetailsViewAction.DeleteTask)
+        }
+    )
+)
 
 @Preview
 @Composable
@@ -70,8 +83,6 @@ private fun TaskDetailsScreenContentPreview() {
         ),
         title = "TaskDetails"
     ) { viewState ->
-        Texts.BL(viewState.task.id)
-        Texts.BL(viewState.task.name)
-        Texts.BL(viewState.task.description)
+        Content(viewState)
     }
 }

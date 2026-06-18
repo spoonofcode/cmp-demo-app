@@ -36,19 +36,40 @@ internal fun TaskOverviewScreen(
         title = "TaskOverview",
         backNavigationEnable = backNavigationEnable,
         verticalScrollEnable = false,
+        topBarActions = { onAction -> TopBarActions(onAction) },
+        dialogs = { viewState, onAction -> Dialogs(viewState, onAction) }
     ) { viewState, onAction ->
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
-        ) {
-            items(viewState.tasks) { task ->
-                TaskItem(
-                    item = task,
-                    onClick = { onAction(TaskOverviewViewAction.SelectTask(task.id)) }
-                )
-            }
+        Content(viewState, onAction)
+    }
+}
+
+@Composable
+private fun Content(
+    viewState: TaskOverviewViewState,
+    onAction: (TaskOverviewViewAction) -> Unit,
+) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
+    ) {
+        items(viewState.tasks) { task ->
+            TaskItem(
+                item = task,
+                onClick = { onAction(TaskOverviewViewAction.SelectTask(task.id)) }
+            )
         }
     }
 }
+
+@Composable
+private fun Dialogs(
+    viewState: TaskOverviewViewState,
+    onAction: (TaskOverviewViewAction) -> Unit,
+) {
+}
+
+private fun TopBarActions(
+    onAction: (TaskOverviewViewAction) -> Unit,
+): List<com.spoonofcode.core.designsystem.components.appbar.TopBarAction> = emptyList()
 
 @Composable
 fun TaskItem(
@@ -102,21 +123,15 @@ fun TaskItem(
 
 @Preview
 @Composable
-private fun TaskOverviewScreenContentPreview() {
+private fun ScreenContentPreview() {
     StandardScreenPreview(
         viewState = TaskOverviewViewState(tasks = emptyList()),
         title = "TaskOverview",
         backNavigationEnable = false
     ) { viewState ->
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
-        ) {
-            items(viewState.tasks) { task ->
-                TaskItem(
-                    item = task,
-                    onClick = { }
-                )
-            }
-        }
+        Content(
+            viewState = viewState,
+            onAction = {}
+        )
     }
 }

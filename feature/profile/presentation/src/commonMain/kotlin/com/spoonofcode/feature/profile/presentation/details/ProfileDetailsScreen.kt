@@ -3,6 +3,7 @@ package com.spoonofcode.feature.profile.presentation.details
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
 import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.StandardScreen
 import com.spoonofcode.core.presentation.base.StandardScreenPreview
@@ -22,15 +23,36 @@ internal fun ProfileDetailsScreen(
         viewModel = viewModel,
         title = stringResource(Res.string.profile),
         backNavigationEnable = backNavigationEnable,
-    ) { _, _ ->
-        Texts.BL("PROFILE")
+        topBarActions = { onAction -> TopBarActions(onAction) },
+        dialogs = { viewState, onAction -> Dialogs(viewState, onAction) }
+    ) { viewState, onAction ->
+        Content(viewState, onAction)
     }
 }
+
+@Composable
+private fun Content(
+    viewState: ProfileDetailsViewState,
+    onAction: (ProfileDetailsViewAction) -> Unit,
+) {
+    Texts.BL("PROFILE")
+}
+
+@Composable
+private fun Dialogs(
+    viewState: ProfileDetailsViewState,
+    onAction: (ProfileDetailsViewAction) -> Unit,
+) {
+}
+
+private fun TopBarActions(
+    onAction: (ProfileDetailsViewAction) -> Unit,
+): List<TopBarAction> = emptyList()
 
 // region previews
 @Preview
 @Composable
-private fun ProfileScreenContentPreview(
+private fun ScreenContentPreview(
     @PreviewParameter(ProfilePreviewParameterProvider::class)
     profile: Profile,
 ) {
@@ -38,8 +60,11 @@ private fun ProfileScreenContentPreview(
         viewState = ProfileDetailsViewState(profile = profile),
         title = "Profile",
         backNavigationEnable = false
-    ) {
-        Texts.BL("PROFILE")
+    ) { viewState ->
+        Content(
+            viewState = viewState,
+            onAction = {}
+        )
     }
 }
 // endregion

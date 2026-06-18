@@ -21,29 +21,44 @@ internal fun HomeScreen(
         viewModel = viewModel,
         title = "Home",
         backNavigationEnable = backNavigationEnable,
-        topBarActions = { onAction ->
-            listOf(
-                TopBarAction(
-                    icon = Icons.Default.Notifications,
-                    description = "Notification",
-                    badgeCount = 9,
-                    onClick = { onAction(HomeViewAction.NavigateToNotifications) }
-                )
-            )
-        }
+        topBarActions = { onAction -> TopBarActions(onAction) },
+        dialogs = { viewState, onAction -> Dialogs(viewState, onAction) }
     ) { _, _ ->
-        Texts.BL("HOME")
+        Content()
     }
 }
 
+@Composable
+private fun Content() {
+    Texts.BL("HOME")
+}
+
+@Composable
+private fun Dialogs(
+    viewState: HomeViewState,
+    onAction: (HomeViewAction) -> Unit,
+) {
+}
+
+private fun TopBarActions(
+    onAction: (HomeViewAction) -> Unit,
+): List<TopBarAction> = listOf(
+    TopBarAction(
+        icon = Icons.Default.Notifications,
+        description = "Notification",
+        badgeCount = 9,
+        onClick = { onAction(HomeViewAction.NavigateToNotifications) }
+    )
+)
+
 @Preview
 @Composable
-private fun HomeScreenContentPreview() {
+private fun ScreenContentPreview() {
     StandardScreenPreview(
         viewState = HomeViewState(),
         title = "Home",
         backNavigationEnable = false
     ) {
-        Texts.BL("HOME")
+        Content()
     }
 }

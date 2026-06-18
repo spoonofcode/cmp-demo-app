@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.spoonofcode.core.designsystem.components.Paddings
 import com.spoonofcode.core.designsystem.components.Paddings.spaceBetweenListElements
 import com.spoonofcode.core.designsystem.components.Spacers
+import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
 import com.spoonofcode.core.designsystem.components.card.Cards
 import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.StandardScreen
@@ -55,14 +56,35 @@ internal fun NotificationOverviewScreen(
                 start = Paddings.screenPadding,
                 end = Paddings.screenPadding,
             )
-        }
+        },
+        topBarActions = { onAction -> TopBarActions(onAction) },
+        dialogs = { viewState, onAction -> Dialogs(viewState, onAction) }
     ) { viewState, onAction ->
-        NotificationTabs(
-            viewState.notifications,
-            selectNotification = { onAction(NotificationOverviewViewAction.SelectNotification(it)) },
-        )
+        Content(viewState, onAction)
     }
 }
+
+@Composable
+private fun Content(
+    viewState: NotificationOverviewViewState,
+    onAction: (NotificationOverviewViewAction) -> Unit,
+) {
+    NotificationTabs(
+        viewState.notifications,
+        selectNotification = { onAction(NotificationOverviewViewAction.SelectNotification(it)) },
+    )
+}
+
+@Composable
+private fun Dialogs(
+    viewState: NotificationOverviewViewState,
+    onAction: (NotificationOverviewViewAction) -> Unit,
+) {
+}
+
+private fun TopBarActions(
+    onAction: (NotificationOverviewViewAction) -> Unit,
+): List<TopBarAction> = emptyList()
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -167,7 +189,7 @@ fun NotificationItem(
 // region previews
 @Preview
 @Composable
-fun NotificationOverviewScreenContentPreview() {
+fun ScreenContentPreview() {
     StandardScreenPreview(
         viewState = NotificationOverviewViewState(),
         title = "notification",
@@ -178,9 +200,9 @@ fun NotificationOverviewScreenContentPreview() {
             )
         }
     ) { viewState ->
-        NotificationTabs(
-            viewState.notifications,
-            selectNotification = { },
+        Content(
+            viewState = viewState,
+            onAction = {}
         )
     }
 }
