@@ -13,4 +13,7 @@ class TaskRepositoryImpl(
 
     override suspend fun getTasks(): Result<List<Task>> =
         remoteTaskDataSource.readTasks().map { list -> list.map { it.toTask() } }
+
+    override suspend fun deleteTask(id: String): Result<Unit> =
+        remoteTaskDataSource.deleteTask(id)
 }

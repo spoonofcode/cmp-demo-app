@@ -145,7 +145,7 @@ abstract class BaseViewModel<VS : BaseViewState, VA : BaseViewAction, VE : BaseV
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
-    internal fun updateContentState(transformation: VS.() -> VS) {
+    fun updateContentState(transformation: VS.() -> VS) {
         if (viewContentState.value != null) {
             _viewContentState.update { currentViewState ->
                 currentViewState?.transformation() ?: currentViewState

@@ -7,4 +7,5 @@ import com.spoonofcode.feature.task.domain.model.Task
 @Immutable
 internal data class TaskDetailsViewState(
     val task: Task,
+    val isDeleteTaskDialogVisible: Boolean = false,
 ) : BaseViewState()

@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
+import com.spoonofcode.core.designsystem.components.dialog.Dialogs
 import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.BaseScreen
 import com.spoonofcode.feature.task.domain.model.Task
@@ -42,6 +43,23 @@ internal class TaskDetailsScreen(
             }
         )
     )
+
+    @Composable
+    override fun provideDialogs(
+        viewState: TaskDetailsViewState,
+        onAction: (TaskDetailsViewAction) -> Unit
+    ) {
+        if (viewState.isDeleteTaskDialogVisible) {
+            Dialogs.AlertDialog(
+                title = "Delete Task",
+                text = "Are you sure you want to delete this task?",
+                confirmButtonText = "confirm",
+                dismissButtonText = "cancel",
+                confirmAction = { onAction(TaskDetailsViewAction.ConfirmDeleteTask) },
+                dismissAction = { onAction(TaskDetailsViewAction.CancelDeleteTask) }
+            )
+        }
+    }
 
     @Composable
     override fun provideContent(

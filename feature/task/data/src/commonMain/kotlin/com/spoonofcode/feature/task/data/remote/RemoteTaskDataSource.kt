@@ -9,7 +9,7 @@ class RemoteTaskDataSource : RemoteBaseDataSource(
 ) {
 
     suspend fun readTask(id: String): Result<TaskResponse> {
-        delay(1000)
+        delay(3000)
         return Result.success(
             TaskResponse(
                 id = "1",
@@ -20,7 +20,7 @@ class RemoteTaskDataSource : RemoteBaseDataSource(
     }
 
     suspend fun readTasks(): Result<List<TaskResponse>> {
-        delay(1000)
+        delay(3000)
         return Result.success(
             listOf(
                 TaskResponse(
@@ -41,4 +41,10 @@ class RemoteTaskDataSource : RemoteBaseDataSource(
             )
         )
     }
+
+    suspend fun deleteTask(id: String): Result<Unit> {
+        delay(3000)
+        return Result.success(Unit)
+    }
+
 }
