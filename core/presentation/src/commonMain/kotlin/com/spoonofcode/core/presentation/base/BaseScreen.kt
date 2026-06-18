@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
@@ -46,7 +47,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
     protected open val backOSButtonEnable: Boolean = true,
     protected open val verticalScrollEnable: Boolean = true,
     protected open val snackbarBottomExtraPadding: Dp = 0.dp,
-    protected open val defaultTopBarTopPadding: Dp = 20.dp,
     protected open val respectScaffoldImePadding: Boolean = false,
     protected open val customBottomScaffoldInnerPadding: Dp? = null,
 ) {
@@ -73,14 +73,12 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         onAction: (VA) -> Unit,
         navigationBackAction: () -> Unit,
     ) {
-        Column(modifier = Modifier.padding(vertical = defaultTopBarTopPadding)) {
-            TopBar(
-                backNavigationEnable = backNavigationEnable,
-                topAppBarTitle = provideTopAppBarTitle() ?: "",
-                navigationBackAction = navigationBackAction,
-                iconBarActions = provideTopBarActions(onAction)
-            )
-        }
+        TopBar(
+            backNavigationEnable = backNavigationEnable,
+            topAppBarTitle = provideTopAppBarTitle() ?: "",
+            navigationBackAction = navigationBackAction,
+            iconBarActions = provideTopBarActions(onAction)
+        )
     }
 
 
@@ -179,6 +177,7 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         onAction: (VA) -> Unit,
     ) {
         Scaffold(
+            containerColor = Color.Transparent,
             snackbarHost = {
                 SnackbarHost(
                     hostState = snackbarHostState, snackbar = { snackbarData ->
@@ -207,6 +206,7 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
+                        .background(Color.Red)
                         .padding(
                             start = innerPadding.calculateLeftPadding(layoutDirection),
                             top = innerPadding.calculateTopPadding(),

@@ -1,14 +1,16 @@
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
@@ -49,8 +51,11 @@ fun MainAppScreen() {
     val currentScreen = backStack.lastOrNull() ?: HomeModuleRoute.Home
 
     Scaffold(
+        containerColor = Color.Red,
         bottomBar = {
-            NavigationBar {
+            NavigationBar(
+                windowInsets = WindowInsets(0, 0, 0, 0)
+            ) {
                 // TAB 1: HOME
                 NavigationBarItem(
                     selected = currentScreen is HomeModuleRoute.Home,
@@ -90,7 +95,7 @@ fun MainAppScreen() {
         // 2. NavDisplay odpowiada za renderowanie UI na podstawie zawartości back stacku
         NavDisplay(
             backStack = backStack,
-            modifier = Modifier.padding(innerPadding),
+            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()),
             entryProvider = entryProvider {
                 homeModuleRouteResolver()
                 profileModuleRouteResolver()
