@@ -44,6 +44,17 @@ kotlin {
             implementation(libs.navigation3.runtime)
             implementation(libs.navigation3.ui)
 
+            implementation(projects.core.data)
+            implementation(projects.core.firebase.data)
+            implementation(projects.core.firebase.domain)
+            implementation(projects.core.network)
+            implementation(projects.core.nfc)
+            implementation(projects.core.presentation)
+            implementation(projects.core.recaptcha)
+            implementation(projects.core.session.data)
+            implementation(projects.core.session.domain)
+            implementation(projects.core.storage.data)
+
             implementation(projects.feature.appnavigation)
             implementation(projects.feature.home.data)
             implementation(projects.feature.home.domain)

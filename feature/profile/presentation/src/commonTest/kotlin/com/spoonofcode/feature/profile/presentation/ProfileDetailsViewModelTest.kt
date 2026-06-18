@@ -7,7 +7,6 @@ import com.spoonofcode.core.presentation.test.base.BaseViewModelTest
 import com.spoonofcode.feature.appnavigation.AuthModuleRoute
 import com.spoonofcode.feature.appnavigation.FAQModuleRoute
 import com.spoonofcode.feature.appnavigation.NotificationModuleRoute
-import com.spoonofcode.feature.appnavigation.PartnerModuleRoute
 import com.spoonofcode.feature.appnavigation.ProfileModuleRoute
 import com.spoonofcode.feature.appnavigation.TACModuleRoute
 import com.spoonofcode.feature.profile.data.test.ProfileMockData.PROFILE_1

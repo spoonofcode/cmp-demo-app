@@ -1,22 +1,3 @@
 <resources>
-    <string name="cancel">Anuluj</string>
-    <string name="about_product">O produkcie</string>
-    <string name="add_product">Dodaj produkt</string>
-    <string name="custom_link">Własny link</string>
-    <string name="delete_product">Usuń produkt</string>
-    <string name="delete_product_from_profile_title">Czy na pewno chcesz usunąć produkt ze swojego profilu?</string>
-    <string name="delete_product_from_profile_text">Produkt zostanie usunięty z Twojego profilu. Aby go dodać, musisz go ponownie zeskanować.</string>
-    <string name="edit_product">Edytuj produkt</string>
-    <string name="learn_more">Dowiedz się więcej</string>
-    <string name="my_products">Moje produkty</string>
-    <string name="my_product_series">Moje serie produktów</string>
-    <string name="product">Produkt</string>
-    <string name="products">Produkty</string>
-    <string name="save_changes">Zapisz zmiany</string>
-    <string name="send_notification">Wyślij powiadomienie</string>
-    <string name="series_number">Seria Nr. %1$d</string>
-    <string name="website">Strona</string>
-    <string name="visit_product_page">Odwiedź stronę produktu</string>
-    <string name="product_already_assigned">Product jest już przypisany do innego użytkownika!</string>
-    <string name="send_message">Wyślij wiadomość</string>
+
 </resources>
