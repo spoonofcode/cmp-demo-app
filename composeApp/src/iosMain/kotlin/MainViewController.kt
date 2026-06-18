@@ -4,4 +4,4 @@ fun MainViewController() = ComposeUIViewController(
     configure = {
         KoinInitializer().init()
     }
-) { App() }
+) { MainAppScreen() }
