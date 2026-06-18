@@ -154,7 +154,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         onAction: (VA) -> Unit,
     ) {
         Scaffold(
-            containerColor = Color.Yellow,
             snackbarHost = {
                 SnackbarHost(
                     hostState = snackbarHostState, snackbar = { snackbarData ->

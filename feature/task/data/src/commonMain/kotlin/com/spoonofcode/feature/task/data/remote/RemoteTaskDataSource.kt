@@ -1,40 +1,44 @@
 package com.spoonofcode.feature.task.data.remote
 
 import com.spoonofcode.core.network.base.RemoteBaseDataSource
-import com.spoonofcode.feature.task.data.remote.model.AddProductToUserRequest
-import com.spoonofcode.feature.task.data.remote.model.ProductResponse
-import com.spoonofcode.feature.task.data.remote.model.UpdateUserProductRequest
-import io.ktor.http.HttpMethod
+import com.spoonofcode.feature.task.data.remote.model.TaskResponse
+import kotlinx.coroutines.delay
 
 class RemoteTaskDataSource : RemoteBaseDataSource(
-    collectionName = "api/products",
+    collectionName = "api/tasks",
 ) {
-    suspend fun readProduct(productId: String): Result<ProductResponse> = doRequest(
-        urlPostfixPath = productId,
-        method = HttpMethod.Get,
-    )
 
-    suspend fun readUserProducts(): Result<List<ProductResponse>> = doRequest(
-        method = HttpMethod.Get,
-    )
+    suspend fun readTask(): Result<TaskResponse> {
+        delay(1000)
+        return Result.success(
+            TaskResponse(
+                id = "1",
+                name = "Task 1",
+                description = "Description 1",
+            )
+        )
+    }
 
-    suspend fun addProductToUser(productId: String): Result<Unit> = doRequest(
-        urlPostfixPath = "$productId/claim",
-        method = HttpMethod.Post,
-        requestBody = AddProductToUserRequest(productId = productId),
-    )
-
-    suspend fun deleteProductFromUser(productId: String): Result<Unit> = doRequest(
-        urlPostfixPath = "$productId/abandon",
-        method = HttpMethod.Post,
-    )
-
-    suspend fun update(
-        productId: String,
-        customLink: String? = null
-    ): Result<Unit> = doRequest(
-        urlPostfixPath = productId,
-        method = HttpMethod.Put,
-        requestBody = UpdateUserProductRequest(customLink = customLink),
-    )
+    suspend fun readTasks(): Result<List<TaskResponse>> {
+        delay(1000)
+        return Result.success(
+            listOf(
+                TaskResponse(
+                    id = "1",
+                    name = "Task 1",
+                    description = "Description 1",
+                ),
+                TaskResponse(
+                    id = "2",
+                    name = "Task 2",
+                    description = "Description 2",
+                ),
+                TaskResponse(
+                    id = "3",
+                    name = "Task 3",
+                    description = "Description 3",
+                )
+            )
+        )
+    }
 }

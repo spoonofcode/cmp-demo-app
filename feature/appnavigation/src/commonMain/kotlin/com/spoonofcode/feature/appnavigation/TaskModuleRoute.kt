@@ -6,4 +6,10 @@ import kotlinx.serialization.Serializable
 sealed class TaskModuleRoute : ModuleRoute() {
     @Serializable
     object TaskOverview : TaskModuleRoute()
+
+    @Serializable
+    object TaskDetails : TaskModuleRoute()
+
+    @Serializable
+    object TaskEdit : TaskModuleRoute()
 }
