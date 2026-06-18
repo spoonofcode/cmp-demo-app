@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.card
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -15,12 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.spoonofcode.core.presentation.compose.Spacers
 
 object Cards {
     @Composable
     fun ElevatedCard(
         onClick: () -> Unit = {},
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         colors: CardColors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),

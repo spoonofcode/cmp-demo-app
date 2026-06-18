@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.switch
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.spoonofcode.core.presentation.compose.Spacers
+import com.spoonofcode.core.presentation.compose.text.Texts
 
 object Switchs {
 
@@ -17,7 +19,7 @@ object Switchs {
         description: String,
         checked: Boolean,
         onCheckedChange: (Boolean) -> Unit,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         enabled: Boolean = true,
     ) {
         Row(

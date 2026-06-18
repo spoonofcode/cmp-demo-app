@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavKey
-import com.spoonofcode.core.presentation.compose.Texts
+import com.spoonofcode.core.presentation.compose.text.Texts
 
 data class BottomNavItem(
     val icon: ImageVector,

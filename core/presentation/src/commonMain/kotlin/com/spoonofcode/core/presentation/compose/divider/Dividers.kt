@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.divider
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -6,13 +6,14 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.spoonofcode.core.presentation.compose.text.Texts
 
 object Dividers {
 
     @Composable
     fun LabeledDivider(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Row(
             modifier = modifier.fillMaxWidth(),

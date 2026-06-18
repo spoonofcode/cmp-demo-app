@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.datetimepicker
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
-import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,6 +27,9 @@ import com.spoonofcode.core.data.utils.LocalDateUtils
 import com.spoonofcode.core.presentation.Res
 import com.spoonofcode.core.presentation.accept
 import com.spoonofcode.core.presentation.cancel
+import com.spoonofcode.core.presentation.compose.Spacers
+import com.spoonofcode.core.presentation.compose.text.Texts
+import com.spoonofcode.core.presentation.compose.textfield.TextFields
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.stringResource
@@ -102,7 +103,7 @@ object DatePickers {
         onValueChange: (LocalDateTime) -> Unit,
         label: String? = null,
         minDateTime: LocalDateTime? = null,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier.Companion
     ) {
         Column(
             modifier = modifier,
@@ -161,7 +162,7 @@ object DatePickers {
             }
         )
 
-        DatePickerDialog(
+        androidx.compose.material3.DatePickerDialog(
             onDismissRequest = { },
             confirmButton = {
                 Button(onClick = { onAccept(state.selectedDateMillis) }) {
@@ -174,7 +175,7 @@ object DatePickers {
                 }
             }
         ) {
-            DatePicker(state = state)
+            androidx.compose.material3.DatePicker(state = state)
         }
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.DrawableResource
 import com.spoonofcode.core.presentation.Res
+import com.spoonofcode.core.presentation.compose.icons.CustomIcons
 import com.spoonofcode.core.presentation.taggy_go_logo
 
 @Composable

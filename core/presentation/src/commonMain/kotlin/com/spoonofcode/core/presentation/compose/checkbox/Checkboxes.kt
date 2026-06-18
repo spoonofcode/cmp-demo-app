@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.checkbox
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -17,6 +17,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import com.spoonofcode.core.presentation.compose.Spacers
+import com.spoonofcode.core.presentation.compose.text.Texts
 import com.spoonofcode.core.presentation.web.getUrlOpener
 
 object Checkboxes {
@@ -26,7 +28,7 @@ object Checkboxes {
         onCheckedChange: (Boolean) -> Unit,
         text: String,
         linkText: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         enabled: Boolean = true,
         linkUrl: String,
         isMandatory: Boolean = true,

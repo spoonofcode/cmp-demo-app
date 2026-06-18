@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.datetimepicker
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -11,7 +11,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
@@ -21,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.spoonofcode.core.data.ext.formatedTime
 import com.spoonofcode.core.data.utils.LocalDateTimeUtils
+import com.spoonofcode.core.presentation.compose.textfield.TextFields
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 
@@ -99,7 +99,7 @@ object TimePickers {
                         minMinute = minTime.minute
                     )
                 } else {
-                    TimePicker(
+                    androidx.compose.material3.TimePicker(
                         state = timePickerState,
                     )
                 }
@@ -146,6 +146,6 @@ object TimePickers {
             }
         }
 
-        TimePicker(state = state)
+        androidx.compose.material3.TimePicker(state = state)
     }
 }

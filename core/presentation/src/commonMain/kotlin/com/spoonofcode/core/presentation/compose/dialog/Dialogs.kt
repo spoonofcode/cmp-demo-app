@@ -1,8 +1,9 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.dialog
 
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import com.spoonofcode.core.presentation.compose.button.Buttons
+import com.spoonofcode.core.presentation.compose.text.Texts
 
 object Dialogs {
 
@@ -16,7 +17,7 @@ object Dialogs {
         confirmAction: () -> Unit,
         dismissAction: () -> Unit,
     ) {
-        AlertDialog(
+        androidx.compose.material3.AlertDialog(
             onDismissRequest = dismissAction,
             title = { Texts.TLB(title) },
             text = { Texts.BM(text) },

@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.textfield
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,16 +12,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import org.jetbrains.compose.resources.stringResource
 import com.spoonofcode.core.presentation.Res
+import com.spoonofcode.core.presentation.compose.Spacers
+import com.spoonofcode.core.presentation.compose.text.Texts
 import com.spoonofcode.core.presentation.search
+import org.jetbrains.compose.resources.stringResource
 
 object TextFields {
     @Composable

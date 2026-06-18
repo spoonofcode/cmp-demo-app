@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.icons
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
@@ -19,7 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
@@ -35,7 +34,7 @@ import org.jetbrains.compose.resources.painterResource
 object CustomIcons {
     @Composable
     fun CircleIcon(
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         imageVector: ImageVector,
         backgroundColor: Color = MaterialTheme.colorScheme.background,
         iconTint: Color = MaterialTheme.colorScheme.onSurface,

@@ -14,10 +14,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.spoonofcode.core.presentation.compose.Paddings
-import com.spoonofcode.core.presentation.compose.Texts
+import com.spoonofcode.core.presentation.compose.text.Texts
 import com.spoonofcode.core.presentation.compose.snackbar.ext.showSnackbar
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 data class CustomSnackbarVisuals(

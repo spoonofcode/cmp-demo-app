@@ -11,6 +11,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import org.jetbrains.compose.resources.stringResource
 import com.spoonofcode.core.presentation.Res
+import com.spoonofcode.core.presentation.compose.text.Texts
 import com.spoonofcode.core.presentation.time_is_up
 import com.spoonofcode.core.presentation.time_remaining
 import kotlin.time.Clock

@@ -21,6 +21,8 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import com.spoonofcode.core.presentation.Res
+import com.spoonofcode.core.presentation.compose.button.Buttons
+import com.spoonofcode.core.presentation.compose.text.Texts
 import com.spoonofcode.core.presentation.data_could_not_be_loaded
 import com.spoonofcode.core.presentation.reload
 import com.spoonofcode.core.presentation.taggy_go_logo

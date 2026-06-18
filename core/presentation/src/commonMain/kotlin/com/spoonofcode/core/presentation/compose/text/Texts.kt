@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.text
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,7 +13,7 @@ object Texts {
     @Composable
     fun DS(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -25,7 +25,7 @@ object Texts {
     @Composable
     fun DSB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -38,7 +38,7 @@ object Texts {
     @Composable
     fun DM(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -50,7 +50,7 @@ object Texts {
     @Composable
     fun DMB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -63,7 +63,7 @@ object Texts {
     @Composable
     fun DL(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -75,7 +75,7 @@ object Texts {
     @Composable
     fun DLB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -88,7 +88,7 @@ object Texts {
     @Composable
     fun TS(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -100,7 +100,7 @@ object Texts {
     @Composable
     fun TSB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -116,7 +116,7 @@ object Texts {
         maxLines: Int = Int.MAX_VALUE,
         overflow: TextOverflow = TextOverflow.Clip,
         color: Color = Color.Unspecified,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -135,7 +135,7 @@ object Texts {
         minLines: Int = 1,
         overflow: TextOverflow = TextOverflow.Clip,
         color: Color = Color.Unspecified,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -152,7 +152,7 @@ object Texts {
     @Composable
     fun TL(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -164,7 +164,7 @@ object Texts {
     @Composable
     fun TLB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         color: Color = Color.Unspecified,
     ) {
         Text(
@@ -179,7 +179,7 @@ object Texts {
     @Composable
     fun HS(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         color: Color = Color.Unspecified,
     ) {
         Text(
@@ -193,7 +193,7 @@ object Texts {
     @Composable
     fun HSB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         color: Color = Color.Unspecified,
     ) {
         Text(
@@ -218,7 +218,7 @@ object Texts {
     @Composable
     fun HMB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,
@@ -241,7 +241,7 @@ object Texts {
     @Composable
     fun HLB(
         text: String,
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
     ) {
         Text(
             text = text,

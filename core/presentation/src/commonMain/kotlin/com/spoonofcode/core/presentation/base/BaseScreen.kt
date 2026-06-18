@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
@@ -34,8 +33,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.spoonofcode.core.presentation.compose.ErrorView
 import com.spoonofcode.core.presentation.compose.LoadingView
 import com.spoonofcode.core.presentation.compose.Paddings
-import com.spoonofcode.core.presentation.compose.TopBar
-import com.spoonofcode.core.presentation.compose.TopBarAction
+import com.spoonofcode.core.presentation.compose.appbar.TopBar
+import com.spoonofcode.core.presentation.compose.appbar.TopBarAction
 import com.spoonofcode.core.presentation.compose.snackbar.Snackbar
 import com.spoonofcode.core.presentation.compose.snackbar.setSnackbarHostState
 import com.spoonofcode.core.presentation.ext.addIf

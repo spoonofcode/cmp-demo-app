@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.slider
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
@@ -28,9 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.spoonofcode.core.presentation.compose.Images
+import com.spoonofcode.core.presentation.compose.card.Cards
+import com.spoonofcode.core.presentation.compose.text.Texts
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

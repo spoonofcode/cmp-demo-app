@@ -1,4 +1,4 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.button
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -23,17 +23,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.spoonofcode.core.presentation.Res
+import com.spoonofcode.core.presentation.compose.Spacers
 import com.spoonofcode.core.presentation.ext.addIf
+import com.spoonofcode.core.presentation.ic_google
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import com.spoonofcode.core.presentation.Res
-import com.spoonofcode.core.presentation.ic_google
 
 object Buttons {
 
     @Composable
     fun PrimaryButton(
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         text: String,
         leftIcon: DrawableResource? = null,
         enabled: Boolean = true,
@@ -85,7 +86,7 @@ object Buttons {
 
     @Composable
     fun IconTextButton(
-        modifier: Modifier = Modifier,
+        modifier: Modifier = Modifier.Companion,
         icon: ImageVector,
         text: String,
         onClick: () -> Unit,
@@ -96,7 +97,7 @@ object Buttons {
             onClick = onClick,
             modifier = modifier
                 .then(
-                    if (square) Modifier.aspectRatio(1f) else Modifier
+                    if (square) Modifier.aspectRatio(1f) else Modifier.Companion
                 ),
             shape = MaterialTheme.shapes.small,
             contentPadding = PaddingValues(8.dp),

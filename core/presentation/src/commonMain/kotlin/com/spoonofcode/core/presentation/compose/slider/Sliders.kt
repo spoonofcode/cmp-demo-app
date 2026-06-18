@@ -1,14 +1,12 @@
-package com.spoonofcode.core.presentation.compose
+package com.spoonofcode.core.presentation.compose.slider
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.RangeSlider
-import androidx.compose.material3.Slider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import com.spoonofcode.core.presentation.compose.Spacers
+import com.spoonofcode.core.presentation.compose.text.Texts
 
 object Sliders {
 
@@ -27,7 +25,7 @@ object Sliders {
         Column {
             Texts.BLB(text = "$labelPrefix ${sliderPosition.toInt()} $labelPostfix")
 
-            Slider(
+            androidx.compose.material3.Slider(
                 value = sliderPosition,
                 onValueChange = {
                     sliderPosition = it
@@ -56,7 +54,7 @@ object Sliders {
         Column {
             Texts.BLB(text = label + " ${sliderPosition.start.toInt()} - ${sliderPosition.endInclusive.toInt()}")
 
-            RangeSlider(
+            androidx.compose.material3.RangeSlider(
                 value = sliderPosition,
                 steps = steps,
                 onValueChange = {
