@@ -44,6 +44,7 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui)
                 implementation(libs.jetbrains.compose.ui.tooling.preview)
                 implementation(libs.navigation.compose)
+                implementation(libs.navigation3.runtime)
 
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)

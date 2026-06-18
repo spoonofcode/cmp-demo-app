@@ -1,3 +1,5 @@
 package com.spoonofcode.feature.appnavigation
 
-abstract class ModuleRoute
+import androidx.navigation3.runtime.NavKey
+
+abstract class ModuleRoute : NavKey

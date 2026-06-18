@@ -8,8 +8,9 @@ suspend fun SnackbarHostState.showSnackbar(
     snackbarEvent: SnackbarEvent,
 ) {
     showSnackbar(
+        // TODO Fix this toString()
         CustomSnackbarVisuals(
-            message = snackbarEvent.message,
+            message = snackbarEvent.message.toString(),
             actionLabel = snackbarEvent.actionLabel,
             duration = snackbarEvent.duration,
             type = snackbarEvent.type,

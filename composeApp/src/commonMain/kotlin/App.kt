@@ -1,5 +1,3 @@
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -11,39 +9,36 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.NavDisplay
-import androidx.navigation3.NavEntry
 import androidx.navigation3.rememberNavBackStack
-import com.spoonofcode.feature.home.presentation.HomeScreen
-import features.task.TaskOverviewScreen
-import kotlinx.serialization.Serializable
+import androidx.navigation3.entryProvider
+import androidx.navigation3.runtime.NavKey
+import com.spoonofcode.feature.home.presentation.homeModuleRouteResolver
+import com.spoonofcode.feature.profile.presentation.profileModuleRouteResolver
+import com.spoonofcode.feature.task.presentation.taskModuleRouteResolver
+import com.spoonofcode.feature.appnavigation.HomeModuleRoute
+import com.spoonofcode.feature.appnavigation.ProfileModuleRoute
+import com.spoonofcode.feature.appnavigation.TaskModuleRoute
 
-// Definiujemy interfejs lub sealed class dla naszych ekranów
-sealed interface Screen {
-    @Serializable data object Home : Screen
-    @Serializable data object TaskOverview : Screen
-    @Serializable data object Profile : Screen
-}
 @Composable
 fun MainAppScreen() {
     // 1. Inicjalizacja back stacku z ekranem startowym (Home)
-    val backStack = rememberNavBackStack(initialDestination = Screen.Home)
+    val backStack = rememberNavBackStack(initialDestination = HomeModuleRoute.Home as NavKey)
 
     // Pobieramy aktualny ekran (ostatni element na stosie)
-    val currentScreen = backStack.lastOrNull() ?: Screen.Home
+    val currentScreen = backStack.lastOrNull() ?: HomeModuleRoute.Home
 
     Scaffold(
         bottomBar = {
             NavigationBar {
                 // TAB 1: HOME
                 NavigationBarItem(
-                    selected = currentScreen is Screen.Home,
+                    selected = currentScreen is HomeModuleRoute.Home,
                     onClick = {
                         // W nawigacji dolnej czyścimy stos i ustawiamy dany ekran jako jedyny root
                         backStack.clear()
-                        backStack.add(Screen.Home)
+                        backStack.add(HomeModuleRoute.Home)
                     },
                     label = { Text("Home") },
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") }
@@ -51,10 +46,10 @@ fun MainAppScreen() {
 
                 // TAB 2: TASK OVERVIEW
                 NavigationBarItem(
-                    selected = currentScreen is Screen.TaskOverview,
+                    selected = currentScreen is TaskModuleRoute.TaskOverview,
                     onClick = {
                         backStack.clear()
-                        backStack.add(Screen.TaskOverview)
+                        backStack.add(TaskModuleRoute.TaskOverview)
                     },
                     label = { Text("Tasks") },
                     icon = { Icon(Icons.Default.List, contentDescription = "Tasks") }
@@ -62,10 +57,10 @@ fun MainAppScreen() {
 
                 // TAB 3: PROFILE
                 NavigationBarItem(
-                    selected = currentScreen is Screen.Profile,
+                    selected = currentScreen is ProfileModuleRoute.Home,
                     onClick = {
                         backStack.clear()
-                        backStack.add(Screen.Profile)
+                        backStack.add(ProfileModuleRoute.Home)
                     },
                     label = { Text("Profile") },
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") }
@@ -76,7 +71,7 @@ fun MainAppScreen() {
         // 2. NavDisplay odpowiada za renderowanie UI na podstawie zawartości back stacku
         NavDisplay(
             backStack = backStack,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.padding(innerPadding),
             entryProvider = entryProvider {
                 homeModuleRouteResolver()
                 profileModuleRouteResolver()

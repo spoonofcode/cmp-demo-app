@@ -2,6 +2,8 @@ package com.spoonofcode.core.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.navigation3.runtime.NavKey
+import kotlin.reflect.KClass
 import kotlinx.coroutines.flow.SharedFlow
 
 @Composable
@@ -21,15 +23,4 @@ fun NavigationHandler(
             }
         }
     }
-}import androidx.navigation3.runtime.NavKey
-import kotlin.reflect.KClass
-
-interface ViewModelNavigator {
-    val navigationEvents: SharedFlow<NavigationEvent>
-
-    suspend fun pop()
-    suspend fun popToRoot()
-    suspend fun <T : NavKey> popUpTo(routeClass: KClass<T>)
-    suspend fun push(route: NavKey)
-    suspend fun replace(route: NavKey)
 }

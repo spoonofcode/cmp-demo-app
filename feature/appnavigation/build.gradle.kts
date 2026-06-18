@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.convention.kmp.library)
+    alias(libs.plugins.convention.cmp.library)
 }
 
 kotlin {
@@ -7,6 +7,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                implementation(libs.navigation3.runtime)
                 // Add KMP dependencies here
             }
         }

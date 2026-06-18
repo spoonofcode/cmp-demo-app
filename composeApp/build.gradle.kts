@@ -41,7 +41,10 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.lifecycle.viewmodel.compose)
             implementation(libs.navigation.compose)
+            implementation(libs.navigation3.runtime)
+            implementation(libs.navigation3.ui)
 
+            implementation(projects.feature.appnavigation)
             implementation(projects.feature.home.data)
             implementation(projects.feature.home.domain)
             implementation(projects.feature.home.presentation)
