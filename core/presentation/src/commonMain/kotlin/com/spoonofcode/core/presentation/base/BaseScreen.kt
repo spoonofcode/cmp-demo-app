@@ -205,7 +205,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Red)
                         .padding(
                             start = innerPadding.calculateLeftPadding(layoutDirection),
                             top = innerPadding.calculateTopPadding(),

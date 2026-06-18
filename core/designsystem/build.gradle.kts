@@ -51,7 +51,6 @@ kotlin {
 
                 // TODO #132 Optimize dependencies
                 implementation(projects.core.data)
-                implementation(projects.core.designsystem)
 
                 // TODO #132 Optimize dependencies
                 implementation(projects.feature.appnavigation)
@@ -76,6 +75,6 @@ kotlin {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "com.spoonofcode.core.presentation"
+    packageOfResClass = "com.spoonofcode.core.designsystem"
 //    generateResClass = always
 }
