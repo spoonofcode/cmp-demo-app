@@ -53,6 +53,11 @@ include(":feature:profile:data-test")
 include(":feature:profile:domain")
 include(":feature:profile:presentation")
 
+include(":feature:notification:data")
+include(":feature:notification:data-test")
+include(":feature:notification:domain")
+include(":feature:notification:presentation")
+
 include(":feature:task:data")
 include(":feature:task:data-test")
 include(":feature:task:domain")

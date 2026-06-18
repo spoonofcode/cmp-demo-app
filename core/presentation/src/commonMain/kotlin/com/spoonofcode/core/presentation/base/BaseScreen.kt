@@ -11,24 +11,18 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.TopAppBarColors
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.spoonofcode.core.designsystem.components.ErrorView
 import com.spoonofcode.core.designsystem.components.LoadingView
@@ -43,9 +37,7 @@ import kotlinx.coroutines.flow.SharedFlow
 
 abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA : BaseViewAction, VE : BaseViewEvent>(
     protected open val backNavigationEnable: Boolean = true,
-    protected open val backOSButtonEnable: Boolean = true,
     protected open val verticalScrollEnable: Boolean = true,
-    protected open val snackbarBottomExtraPadding: Dp = 0.dp,
     protected open val respectScaffoldImePadding: Boolean = false,
     protected open val customBottomScaffoldInnerPadding: Dp? = null,
 ) {
@@ -54,10 +46,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         end = Paddings.screenPadding,
         bottom = Paddings.screenPadding,
     )
-
-
-    protected open fun provideNavigationBackIcon(): ImageVector =
-        Icons.AutoMirrored.Filled.ArrowBack
 
     protected open fun provideNavigationBackAction(
         onAction: (VA) -> Unit,
@@ -79,10 +67,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
             iconBarActions = provideTopBarActions(onAction)
         )
     }
-
-
-    @Composable
-    protected open fun provideTopBarColors(): TopAppBarColors = TopAppBarDefaults.topAppBarColors()
 
     @Composable
     protected open fun provideContentBackgroundColor(): Color = MaterialTheme.colorScheme.background
@@ -147,12 +131,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         val customBackAction = provideNavigationBackAction(viewModel::onAction)
         val navigationBackAction = customBackAction ?: { viewModel.navigateBack() }
 
-//        BackHandler(true) {
-//            if (backOSButtonEnable) {
-//                navigationBackAction()
-//            }
-//        }
-
         setSnackbarHostState(snackbarHostState, viewModel.snackbarEvent)
 
         provideViewEvents(viewModel.viewEvent, viewModel::onAction)
@@ -176,7 +154,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
         onAction: (VA) -> Unit,
     ) {
         Scaffold(
-            containerColor = Color.Transparent,
             snackbarHost = {
                 SnackbarHost(
                     hostState = snackbarHostState, snackbar = { snackbarData ->

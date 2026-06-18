@@ -64,6 +64,10 @@ kotlin {
             implementation(projects.feature.profile.domain)
             implementation(projects.feature.profile.presentation)
 
+            implementation(projects.feature.notification.data)
+            implementation(projects.feature.notification.domain)
+            implementation(projects.feature.notification.presentation)
+
             implementation(projects.feature.task.data)
             implementation(projects.feature.task.domain)
             implementation(projects.feature.task.presentation)

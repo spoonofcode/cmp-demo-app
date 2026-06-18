@@ -6,7 +6,7 @@ import com.spoonofcode.feature.appnavigation.ProfileModuleRoute
 import com.spoonofcode.feature.profile.presentation.details.ProfileDetailsScreen
 
 fun EntryProviderScope<NavKey>.profileModuleRouteResolver() {
-    entry<ProfileModuleRoute.Home> {
+    entry<ProfileModuleRoute.ProfileDetails> {
         ProfileDetailsScreen().Content()
     }
 }

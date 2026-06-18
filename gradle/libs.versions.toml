@@ -7,7 +7,7 @@ androidTargetSdk = "36"
 projectApplicationId = "com.spoonofcode.cmpdemoapp"
 projectVersionCode = "1"
 projectVersionName = "1.0.0"
-androidx-compose-bom = "2025.02.00"
+androidx-compose-bom = "2026.06.00"
 androidx-activityCompose = "1.13.0"
 androidx-appcompat = "1.7.1"
 androidx-constraintlayout = "2.2.1"
@@ -62,6 +62,7 @@ buildkonfig-gradle-plugin = { group = "com.codingfeline.buildkonfig", name = "bu
 buildkonfig-compiler = { group = "com.codingfeline.buildkonfig", name = "buildkonfig-compiler", version.ref = "buildkonfig" }
 
 jetbrains-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-plugin" }
+jetbrains-compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose-plugin" }
 jetbrains-compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-plugin" }
 jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-plugin" }
 jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-plugin" }
