@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.spoonofcode.core.presentation.base.BaseScreen
 import com.spoonofcode.core.presentation.compose.Texts
 import com.spoonofcode.core.presentation.compose.TopBarAction
-import com.spoonofcode.core.presentation.ext.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 internal class TaskOverviewScreen(
     override val backNavigationEnable: Boolean = false,

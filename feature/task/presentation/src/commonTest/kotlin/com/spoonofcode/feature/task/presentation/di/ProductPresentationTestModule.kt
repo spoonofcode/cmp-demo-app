@@ -8,6 +8,6 @@ val productPresentationTestModule = module {
     includes(
         productDataTestModule,
         productDomainModule,
-        productPresentationModule,
+        taskPresentationModule,
     )
 }
