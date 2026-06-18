@@ -63,17 +63,21 @@ fun MainAppScreen() {
             || currentScreen is TaskModuleRoute.TaskOverview
             || currentScreen is ProfileModuleRoute.ProfileDetails
 
+
+//    Scaffold(
+//        containerColor = Color.Green,
+//    ) {
+//        Text("BARTEK")
+//    }
+
     Scaffold(
-        containerColor = Color.Red,
+        containerColor = Color.Blue,
         bottomBar = {
             if(showBottomBar) {
-                NavigationBar(
-                    windowInsets = WindowInsets(0, 0, 0, 0)
-                ) {
+                NavigationBar{
                     NavigationBarItem(
                         selected = currentScreen is HomeModuleRoute.Home,
                         onClick = {
-                            // W nawigacji dolnej czyścimy stos i ustawiamy dany ekran jako jedyny root
                             backStack.clear()
                             backStack.add(HomeModuleRoute.Home)
                         },
