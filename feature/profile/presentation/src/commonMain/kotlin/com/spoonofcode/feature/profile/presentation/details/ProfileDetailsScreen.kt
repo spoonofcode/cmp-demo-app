@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.BaseScreen
-import com.spoonofcode.core.presentation.compose.text.Texts
 import com.spoonofcode.feature.profile.domain.model.Profile
 import com.spoonofcode.feature.profile.presentation.ProfilePreviewParameterProvider
 import com.spoonofcode.feature.profile.presentation.Res

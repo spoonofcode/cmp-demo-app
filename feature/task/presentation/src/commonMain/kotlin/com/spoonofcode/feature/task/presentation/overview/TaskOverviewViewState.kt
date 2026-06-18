@@ -1,4 +1,4 @@
-package com.spoonofcode.feature.product.presentation.overview
+package com.spoonofcode.feature.task.presentation.overview
 
 import androidx.compose.runtime.Immutable
 import com.spoonofcode.core.presentation.base.BaseViewState
