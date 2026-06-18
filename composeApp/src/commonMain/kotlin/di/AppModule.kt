@@ -11,6 +11,9 @@ import com.spoonofcode.core.storage.data.di.storageDataModule
 import com.spoonofcode.feature.home.data.di.homeDataModule
 import com.spoonofcode.feature.home.domain.di.homeDomainModule
 import com.spoonofcode.feature.home.presentation.di.homePresentationModule
+import com.spoonofcode.feature.notification.data.di.notificationDataModule
+import com.spoonofcode.feature.notification.domain.di.notificationDomainModule
+import com.spoonofcode.feature.notification.presentation.di.notificationPresentationModule
 import com.spoonofcode.feature.profile.data.di.profileDataModule
 import com.spoonofcode.feature.profile.domain.di.profileDomainModule
 import com.spoonofcode.feature.profile.presentation.di.profilePresentationModule
@@ -53,6 +56,10 @@ val appModule = module {
         profileDataModule,
         profileDomainModule,
         profilePresentationModule,
+
+        notificationDataModule,
+        notificationDomainModule,
+        notificationPresentationModule,
 
         taskDataModule,
         taskDomainModule,

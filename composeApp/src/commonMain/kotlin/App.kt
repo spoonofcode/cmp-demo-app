@@ -10,22 +10,28 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.navigation.Navigator
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.spoonofcode.core.presentation.navigation.NavigationHandler
+import com.spoonofcode.core.presentation.navigation.ViewModelNavigator
 import com.spoonofcode.feature.appnavigation.HomeModuleRoute
 import com.spoonofcode.feature.appnavigation.ProfileModuleRoute
 import com.spoonofcode.feature.appnavigation.TaskModuleRoute
 import com.spoonofcode.feature.home.presentation.homeModuleRouteResolver
+import com.spoonofcode.feature.notification.presentation.notificationModuleRouteResolver
 import com.spoonofcode.feature.profile.presentation.profileModuleRouteResolver
 import com.spoonofcode.feature.task.presentation.taskModuleRouteResolver
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
+import org.koin.compose.getKoin
 
 private val navSavedStateConfiguration = SavedStateConfiguration {
     serializersModule = SerializersModule {
@@ -45,6 +51,14 @@ fun MainAppScreen() {
     val backStack = rememberNavBackStack(
         configuration = navSavedStateConfiguration,
         HomeModuleRoute.Home
+    )
+
+    val navigator = remember { Navigator(backStack) }
+
+    val viewModelNavigator: ViewModelNavigator by getKoin().inject()
+    NavigationHandler(
+        navigationFlow = viewModelNavigator.navigationEvents,
+        navigator = navigator,
     )
 
     // Pobieramy aktualny ekran (ostatni element na stosie)
@@ -99,6 +113,7 @@ fun MainAppScreen() {
             entryProvider = entryProvider {
                 homeModuleRouteResolver()
                 profileModuleRouteResolver()
+                notificationModuleRouteResolver()
                 taskModuleRouteResolver()
             }
         )

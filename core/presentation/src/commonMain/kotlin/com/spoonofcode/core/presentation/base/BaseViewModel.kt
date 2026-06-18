@@ -26,12 +26,12 @@ import kotlinx.coroutines.launch
 import org.koin.mp.KoinPlatform.getKoin
 
 /**
- * Base ViewModel implementation for Unidirectional Data Flow.
- *
- * @param VS The type representing the View State.
- * @param VA The type representing User Actions.
- * @param VE The type representing One-off View Events.
- */
+* Base ViewModel implementation for Unidirectional Data Flow.
+*
+* @param VS The type representing the View State.
+* @param VA The type representing User Actions.
+* @param VE The type representing One-off View Events.
+*/
 abstract class BaseViewModel<VS : BaseViewState, VA : BaseViewAction, VE : BaseViewEvent>(
     protected val initialViewState: ViewState<VS> = ViewState.Initial,
     protected val viewStateStopTimeoutMillis: Long = DEFAULT_STOP_TIMEOUT_MILLIS,

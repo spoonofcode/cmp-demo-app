@@ -26,7 +26,7 @@ internal class HomeScreen(
             icon = Icons.Default.Notifications,
             description = "Notification",
             badgeCount = 9,
-            onClick = {}
+            onClick = { onAction(HomeViewAction.NavigateToNotifications) }
         )
     )
 
