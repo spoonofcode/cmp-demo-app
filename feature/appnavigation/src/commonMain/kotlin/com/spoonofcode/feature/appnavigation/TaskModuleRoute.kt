@@ -8,7 +8,7 @@ sealed class TaskModuleRoute : ModuleRoute() {
     object TaskOverview : TaskModuleRoute()
 
     @Serializable
-    object TaskDetails : TaskModuleRoute()
+    data class TaskDetails(val taskId: String) : TaskModuleRoute()
 
     @Serializable
     object TaskEdit : TaskModuleRoute()

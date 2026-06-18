@@ -13,7 +13,7 @@ fun EntryProviderScope<NavKey>.taskModuleRouteResolver() {
     }
 
     entry<TaskModuleRoute.TaskDetails> {
-        TaskDetailsScreen().Content()
+        TaskDetailsScreen(taskId = it.taskId).Content()
     }
 
     entry<TaskModuleRoute.TaskEdit> {

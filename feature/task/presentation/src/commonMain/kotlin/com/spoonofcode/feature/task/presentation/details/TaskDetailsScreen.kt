@@ -2,22 +2,46 @@ package com.spoonofcode.feature.task.presentation.details
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
 import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.BaseScreen
+import com.spoonofcode.feature.task.domain.model.Task
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 internal class TaskDetailsScreen(
+    val taskId: String
 ) : BaseScreen<TaskDetailsViewModel, TaskDetailsViewState, TaskDetailsViewAction, Nothing>() {
 
     @Composable
     override fun provideTopAppBarTitle() = "TaskDetails"
 
     @Composable
-    override fun provideViewModel() = koinViewModel<TaskDetailsViewModel>()
+    override fun provideViewModel() = koinViewModel<TaskDetailsViewModel> {
+        parametersOf(taskId)
+    }
+
+    @Composable
+    override fun provideTopBarActions(
+        onAction: (TaskDetailsViewAction) -> Unit,
+    ) = listOf(
+        TopBarAction(
+            icon = Icons.Default.Edit,
+            description = "Edit",
+            onClick = { onAction(TaskDetailsViewAction.EditTask) },
+        ),
+        TopBarAction(
+            icon = Icons.Default.Delete,
+            description = "Delete",
+            onClick = {
+                onAction(TaskDetailsViewAction.DeleteTask)
+            }
+        )
+    )
 
     @Composable
     override fun provideContent(
@@ -25,7 +49,15 @@ internal class TaskDetailsScreen(
         onAction: (TaskDetailsViewAction) -> Unit,
     ): @Composable (ColumnScope.() -> Unit) {
         return {
-            Texts.BL("TASK OVERVIEW")
+            Texts.BL(
+                viewState.task.id
+            )
+            Texts.BL(
+                viewState.task.name
+            )
+            Texts.BL(
+                viewState.task.description
+            )
         }
     }
 
@@ -34,5 +66,15 @@ internal class TaskDetailsScreen(
 @Preview
 @Composable
 private fun TaskDetailsScreenContentPreview() {
-    TaskDetailsScreen().PreviewContent(TaskDetailsViewState())
+    TaskDetailsScreen(
+        taskId = "1",
+    ).PreviewContent(
+        TaskDetailsViewState(
+            task = Task(
+                id = "1",
+                name = "Task 1",
+                description = "Description 1",
+            )
+        )
+    )
 }

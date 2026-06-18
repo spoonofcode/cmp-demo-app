@@ -2,8 +2,9 @@ package com.spoonofcode.feature.task.presentation.details
 
 import androidx.compose.runtime.Immutable
 import com.spoonofcode.core.presentation.base.BaseViewState
+import com.spoonofcode.feature.task.domain.model.Task
 
 @Immutable
 internal data class TaskDetailsViewState(
-    val title:String = "TASK DETAILS"
+    val task: Task,
 ) : BaseViewState()

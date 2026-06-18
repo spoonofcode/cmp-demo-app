@@ -8,7 +8,7 @@ class RemoteTaskDataSource : RemoteBaseDataSource(
     collectionName = "api/tasks",
 ) {
 
-    suspend fun readTask(): Result<TaskResponse> {
+    suspend fun readTask(id: String): Result<TaskResponse> {
         delay(1000)
         return Result.success(
             TaskResponse(

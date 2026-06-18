@@ -8,8 +8,8 @@ import com.spoonofcode.feature.task.domain.repository.TaskRepository
 class TaskRepositoryImpl(
     private val remoteTaskDataSource: RemoteTaskDataSource,
 ) : TaskRepository {
-    override suspend fun getTask(): Result<Task> =
-        remoteTaskDataSource.readTask().map { it.toTask() }
+    override suspend fun getTask(id: String): Result<Task> =
+        remoteTaskDataSource.readTask(id).map { it.toTask() }
 
     override suspend fun getTasks(): Result<List<Task>> =
         remoteTaskDataSource.readTasks().map { list -> list.map { it.toTask() } }

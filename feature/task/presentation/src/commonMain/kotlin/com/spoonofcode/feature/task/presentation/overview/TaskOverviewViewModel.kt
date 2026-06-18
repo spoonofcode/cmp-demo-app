@@ -10,10 +10,9 @@ internal class TaskOverviewViewModel(
     private val getTasksUseCase: GetTasksUseCase,
 ) : BaseViewModel<TaskOverviewViewState, TaskOverviewViewAction, Nothing>() {
 
-    override val startAction =
-        {
-            loadTasks()
-        }
+    override val startAction = {
+        loadTasks()
+    }
 
     override fun onAction(action: TaskOverviewViewAction) {
         when (action) {
@@ -41,7 +40,7 @@ internal class TaskOverviewViewModel(
 
     private fun selectTask(id: String) {
         viewModelScope.launch {
-            viewModelNavigator.push(TaskModuleRoute.TaskDetails)
+            viewModelNavigator.push(TaskModuleRoute.TaskDetails(taskId = id))
         }
     }
 }
