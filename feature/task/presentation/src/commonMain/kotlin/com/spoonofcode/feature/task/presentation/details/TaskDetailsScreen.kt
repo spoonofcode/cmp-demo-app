@@ -20,7 +20,7 @@ internal fun TaskDetailsScreen(
         viewModel = viewModel,
         title = "TaskDetails",
         topBarActions = { onAction -> TopBarActions(onAction) },
-        dialogs = { viewState, onAction -> Dialogs(viewState, onAction) }
+        dialogs = { viewState, onAction -> Dialogs(viewState.isDeleteTaskDialogVisible, onAction) }
     ) { viewState, _ ->
         Content(viewState)
     }
@@ -35,10 +35,10 @@ private fun Content(viewState: TaskDetailsViewState) {
 
 @Composable
 private fun Dialogs(
-    viewState: TaskDetailsViewState,
+    isDeleteTaskDialogVisible: Boolean,
     onAction: (TaskDetailsViewAction) -> Unit,
 ) {
-    if (viewState.isDeleteTaskDialogVisible) {
+    if (isDeleteTaskDialogVisible) {
         Dialogs.AlertDialog(
             title = "Delete Task",
             text = "Are you sure you want to delete this task?",

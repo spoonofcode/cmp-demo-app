@@ -63,7 +63,9 @@ fun <VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA : BaseViewAction, VE
 
     setSnackbarHostState(snackbarHostState, viewModel.snackbarEvent)
 
-    val navBackAction = navigationBackAction?.invoke(viewModel::onAction) ?: { viewModel.navigateBack() }
+    val navBackAction = remember(navigationBackAction, viewModel) {
+        navigationBackAction?.invoke(viewModel::onAction) ?: { viewModel.navigateBack() }
+    }
 
     Scaffold(
         modifier = Modifier
