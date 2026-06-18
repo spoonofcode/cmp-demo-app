@@ -11,13 +11,10 @@ import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.StandardScreen
 import com.spoonofcode.core.presentation.base.StandardScreenPreview
 import com.spoonofcode.feature.task.domain.model.Task
-import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.parameter.parametersOf
 
 @Composable
 internal fun TaskDetailsScreen(
-    taskId: String,
-    viewModel: TaskDetailsViewModel = koinViewModel { parametersOf(taskId) },
+    viewModel: TaskDetailsViewModel,
 ) {
     StandardScreen(
         viewModel = viewModel,

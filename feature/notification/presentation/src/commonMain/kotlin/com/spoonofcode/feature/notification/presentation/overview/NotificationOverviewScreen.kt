@@ -41,11 +41,10 @@ import com.spoonofcode.feature.notification.presentation.Res
 import com.spoonofcode.feature.notification.presentation.tab_already_read
 import com.spoonofcode.feature.notification.presentation.tab_new
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun NotificationOverviewScreen(
-    viewModel: NotificationOverviewViewModel = koinViewModel(),
+    viewModel: NotificationOverviewViewModel,
 ) {
     StandardScreen(
         viewModel = viewModel,

@@ -9,12 +9,11 @@ import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
 import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.StandardScreen
 import com.spoonofcode.core.presentation.base.StandardScreenPreview
-import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 internal fun HomeScreen(
-    viewModel: HomeViewModel = koinViewModel(),
+    viewModel: HomeViewModel,
     backNavigationEnable: Boolean = false,
 ) {
     StandardScreen(

@@ -6,11 +6,10 @@ import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
 import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.StandardScreen
 import com.spoonofcode.core.presentation.base.StandardScreenPreview
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun TaskEditScreen(
-    viewModel: TaskEditViewModel = koinViewModel(),
+    viewModel: TaskEditViewModel,
 ) {
     StandardScreen(
         viewModel = viewModel,

@@ -6,17 +6,25 @@ import com.spoonofcode.feature.appnavigation.TaskModuleRoute
 import com.spoonofcode.feature.task.presentation.details.TaskDetailsScreen
 import com.spoonofcode.feature.task.presentation.edit.TaskEditScreen
 import com.spoonofcode.feature.task.presentation.overview.TaskOverviewScreen
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 fun EntryProviderScope<NavKey>.taskModuleRouteResolver() {
     entry<TaskModuleRoute.TaskOverview> {
-        TaskOverviewScreen()
+        TaskOverviewScreen(
+            viewModel = koinViewModel()
+        )
     }
 
     entry<TaskModuleRoute.TaskDetails> {
-        TaskDetailsScreen(taskId = it.taskId)
+        TaskDetailsScreen(
+            viewModel = koinViewModel { parametersOf(it.taskId) },
+        )
     }
 
     entry<TaskModuleRoute.TaskEdit> {
-        TaskEditScreen()
+        TaskEditScreen(
+            viewModel = koinViewModel()
+        )
     }
 }

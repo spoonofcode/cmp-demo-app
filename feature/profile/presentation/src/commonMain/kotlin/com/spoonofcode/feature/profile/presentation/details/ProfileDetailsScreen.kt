@@ -12,11 +12,10 @@ import com.spoonofcode.feature.profile.presentation.ProfilePreviewParameterProvi
 import com.spoonofcode.feature.profile.presentation.Res
 import com.spoonofcode.feature.profile.presentation.profile
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun ProfileDetailsScreen(
-    viewModel: ProfileDetailsViewModel = koinViewModel(),
+    viewModel: ProfileDetailsViewModel,
     backNavigationEnable: Boolean = false,
 ) {
     StandardScreen(

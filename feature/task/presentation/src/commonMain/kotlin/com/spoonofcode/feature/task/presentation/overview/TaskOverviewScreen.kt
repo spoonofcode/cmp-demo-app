@@ -24,11 +24,10 @@ import com.spoonofcode.core.designsystem.components.text.Texts
 import com.spoonofcode.core.presentation.base.StandardScreen
 import com.spoonofcode.core.presentation.base.StandardScreenPreview
 import com.spoonofcode.feature.task.domain.model.Task
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun TaskOverviewScreen(
-    viewModel: TaskOverviewViewModel = koinViewModel(),
+    viewModel: TaskOverviewViewModel,
     backNavigationEnable: Boolean = false,
 ) {
     StandardScreen(
