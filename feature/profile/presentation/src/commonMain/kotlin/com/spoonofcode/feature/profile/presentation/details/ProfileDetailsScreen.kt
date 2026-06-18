@@ -24,13 +24,11 @@ internal class ProfileDetailsScreen(
     override fun provideViewModel() = koinViewModel<ProfileDetailsViewModel>()
 
     @Composable
-    override fun provideContent(
+    override fun ColumnScope.ScreenContent(
         viewState: ProfileDetailsViewState,
         onAction: (ProfileDetailsViewAction) -> Unit,
-    ): @Composable (ColumnScope.() -> Unit) {
-        return {
-            Texts.BL("PROFILE")
-        }
+    ) {
+        Texts.BL("PROFILE")
     }
 }
 

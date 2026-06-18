@@ -17,13 +17,11 @@ internal class TaskEditScreen(
     override fun provideViewModel() = koinViewModel<TaskEditViewModel>()
 
     @Composable
-    override fun provideContent(
+    override fun ColumnScope.ScreenContent(
         viewState: TaskEditViewState,
         onAction: (TaskEditViewAction) -> Unit,
-    ): @Composable (ColumnScope.() -> Unit) {
-        return {
-            Texts.BL("TASK Edit")
-        }
+    ) {
+        Texts.BL("TASK Edit")
     }
 
 }

@@ -2,16 +2,17 @@ package com.spoonofcode.core.presentation.base
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -56,7 +57,6 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
 
     @Composable
     protected open fun provideTopBar(
-        viewState: ViewState<VS>,
         onAction: (VA) -> Unit,
         navigationBackAction: () -> Unit,
     ) {
@@ -82,172 +82,121 @@ abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA
     }
 
     @Composable
-    protected open fun provideDialogs(
-        viewState: VS,
-        onAction: (VA) -> Unit,
-    ) {
-    }
+    protected open fun provideDialogs(viewState: VS, onAction: (VA) -> Unit) {}
 
     @Composable
-    protected open fun provideBottomSheets(
-        viewState: VS,
-        onAction: (VA) -> Unit,
-    ) {
-    }
+    protected open fun provideBottomSheets(viewState: VS, onAction: (VA) -> Unit) {}
 
     @Composable
-    protected open fun provideBottomBar(
-        viewState: VS,
-        onAction: (VA) -> Unit,
-    ) {
-    }
+    protected open fun provideBottomBar(viewState: VS, onAction: (VA) -> Unit) {}
 
     @Composable
-    protected open fun provideViewEvents(
-        viewEvent: SharedFlow<VE>,
-        onAction: (VA) -> Unit,
-    ) {
-    }
+    protected open fun provideViewEvents(viewEvent: SharedFlow<VE>, onAction: (VA) -> Unit) {}
 
     @Composable
     protected abstract fun provideViewModel(): VM
 
     @Composable
-    protected abstract fun provideContent(
-        viewState: VS,
-        onAction: (VA) -> Unit,
-    ): @Composable ColumnScope.() -> Unit
+    protected abstract fun ColumnScope.ScreenContent(viewState: VS, onAction: (VA) -> Unit)
 
     @Composable
     fun Content() {
-        val snackbarHostState = remember { SnackbarHostState() }
         val viewModel = provideViewModel()
-
-        // TODO Fix networkState
-        // viewModel.networkState.collectAsStateWithLifecycle()
-
         val viewState by viewModel.viewState.collectAsStateWithLifecycle()
-
-        val customBackAction = provideNavigationBackAction(viewModel::onAction)
-        val navigationBackAction = customBackAction ?: { viewModel.navigateBack() }
+        val snackbarHostState = remember { SnackbarHostState() }
 
         setSnackbarHostState(snackbarHostState, viewModel.snackbarEvent)
-
         provideViewEvents(viewModel.viewEvent, viewModel::onAction)
 
-        ContentView(
-            snackbarHostState = snackbarHostState,
-            viewState = viewState,
-            reloadAction = { viewModel.onStartAction() },
-            navigationBackAction = navigationBackAction,
-            onAction = viewModel::onAction
-        )
-    }
+        val navigationBackAction = provideNavigationBackAction(viewModel::onAction) ?: { viewModel.navigateBack() }
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    private fun ContentView(
-        snackbarHostState: SnackbarHostState,
-        viewState: ViewState<VS>,
-        reloadAction: () -> Unit,
-        navigationBackAction: () -> Unit,
-        onAction: (VA) -> Unit,
-    ) {
         Scaffold(
-            snackbarHost = {
-                SnackbarHost(
-                    hostState = snackbarHostState, snackbar = { snackbarData ->
-                        Snackbar(
-                            snackbarData = snackbarData,
-                        )
-                    })
-            },
-            topBar = {
-                provideTopBar(
-                    viewState = viewState,
-                    onAction = onAction,
-                    navigationBackAction = navigationBackAction,
-                )
-            },
-            bottomBar = {
-                if (viewState is ViewState.Content) {
-                    provideBottomBar(viewState.data, onAction)
-                }
-            },
             modifier = Modifier
                 .addIf(respectScaffoldImePadding) { imePadding() }
                 .fillMaxSize(),
-            content = { innerPadding ->
-                val layoutDirection = LocalLayoutDirection.current
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(
-                            start = innerPadding.calculateLeftPadding(layoutDirection),
-                            top = innerPadding.calculateTopPadding(),
-                            end = innerPadding.calculateEndPadding(layoutDirection),
-                            bottom = customBottomScaffoldInnerPadding
-                                ?: innerPadding.calculateBottomPadding()
-                        )
-                ) {
-                    when (viewState) {
-                        ViewState.Initial -> {}
-                        ViewState.Loading -> provideLoadingView()
-                        ViewState.Error -> ErrorView(reload = reloadAction)
-                        is ViewState.Content -> ContentWrapper(viewState.data, onAction)
+            topBar = {
+                provideTopBar(
+                    onAction = viewModel::onAction,
+                    navigationBackAction = navigationBackAction
+                )
+            },
+            bottomBar = {
+                (viewState as? ViewState.Content)?.data?.let {
+                    provideBottomBar(it, viewModel::onAction)
+                }
+            },
+            snackbarHost = {
+                SnackbarHost(hostState = snackbarHostState) {
+                    Snackbar(snackbarData = it)
+                }
+            }
+        ) { innerPadding ->
+            val layoutDirection = LocalLayoutDirection.current
+            Box(
+                modifier = Modifier
+                    .padding(
+                        start = innerPadding.calculateStartPadding(layoutDirection),
+                        top = innerPadding.calculateTopPadding(),
+                        end = innerPadding.calculateEndPadding(layoutDirection),
+                        bottom = customBottomScaffoldInnerPadding ?: innerPadding.calculateBottomPadding()
+                    )
+                    .fillMaxSize()
+            ) {
+                when (val state = viewState) {
+                    ViewState.Initial -> {}
+                    ViewState.Loading -> provideLoadingView()
+                    ViewState.Error -> ErrorView(reload = { viewModel.onStartAction() })
+                    is ViewState.Content -> {
+                        provideDialogs(state.data, viewModel::onAction)
+                        provideBottomSheets(state.data, viewModel::onAction)
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(provideContentBackgroundColor())
+                                .addIf(verticalScrollEnable) {
+                                    verticalScroll(rememberScrollState())
+                                }
+                                .padding(provideContentPadding()),
+                            verticalArrangement = Arrangement.spacedBy(Paddings.fieldsPadding)
+                        ) {
+                            ScreenContent(state.data, viewModel::onAction)
+                        }
                     }
                 }
             }
-        )
+        }
     }
 
     @Composable
-    private fun ColumnScope.ContentWrapper(
-        viewState: VS,
-        onAction: (VA) -> Unit
-    ) {
-        provideDialogs(
-            viewState = viewState,
-            onAction = onAction,
-        )
-
-        provideBottomSheets(
-            viewState = viewState,
-            onAction = onAction,
-        )
-
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxSize()
-                .background(provideContentBackgroundColor())
-                .addIf(verticalScrollEnable) {
-                    verticalScroll(
-                        rememberScrollState()
+    fun PreviewContent(viewState: VS) {
+        AppTheme {
+            Scaffold(
+                topBar = {
+                    TopBar(
+                        backNavigationEnable = backNavigationEnable,
+                        topAppBarTitle = provideTopAppBarTitle() ?: "",
+                        navigationBackAction = {},
+                        iconBarActions = emptyList()
                     )
                 }
-                .padding(provideContentPadding()),
-            verticalArrangement = Arrangement.spacedBy(Paddings.fieldsPadding),
-            content = provideContent(
-                viewState = viewState,
-                onAction = onAction,
-            )
-        )
-    }
-
-    @Composable
-    fun PreviewContent(
-        viewState: VS,
-    ) {
-        AppTheme {
-            val snackbarHostState = remember { SnackbarHostState() }
-            ContentView(
-                snackbarHostState = snackbarHostState,
-                viewState = ViewState.Content(viewState),
-                reloadAction = {},
-                navigationBackAction = {},
-                onAction = {},
-            )
+            ) { innerPadding ->
+                Box(
+                    modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(provideContentBackgroundColor())
+                            .padding(provideContentPadding()),
+                        verticalArrangement = Arrangement.spacedBy(Paddings.fieldsPadding)
+                    ) {
+                        ScreenContent(viewState, {})
+                    }
+                }
+            }
         }
     }
 }

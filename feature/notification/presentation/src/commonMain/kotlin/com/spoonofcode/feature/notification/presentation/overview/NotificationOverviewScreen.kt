@@ -58,16 +58,14 @@ internal class NotificationOverviewScreen(
     )
 
     @Composable
-    override fun provideContent(
+    override fun ColumnScope.ScreenContent(
         viewState: NotificationOverviewViewState,
         onAction: (NotificationOverviewViewAction) -> Unit,
-    ): @Composable (ColumnScope.() -> Unit) {
-        return {
-            NotificationTabs(
-                viewState.notifications,
-                selectNotification = { onAction(NotificationOverviewViewAction.SelectNotification(it)) },
-            )
-        }
+    ) {
+        NotificationTabs(
+            viewState.notifications,
+            selectNotification = { onAction(NotificationOverviewViewAction.SelectNotification(it)) },
+        )
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
