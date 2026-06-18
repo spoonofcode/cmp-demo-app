@@ -8,7 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.navigation3.runtime.NavKey
-import com.spoonofcode.core.presentation.compose.navigationbar.BottomNavItem
+import com.spoonofcode.core.designsystem.components.navigationbar.BottomNavItem
 import com.spoonofcode.feature.appnavigation.HomeModuleRoute
 import com.spoonofcode.feature.appnavigation.ProfileModuleRoute
 import com.spoonofcode.feature.appnavigation.TaskModuleRoute

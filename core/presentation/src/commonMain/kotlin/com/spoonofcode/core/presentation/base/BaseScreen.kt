@@ -30,15 +30,15 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.spoonofcode.core.presentation.compose.ErrorView
-import com.spoonofcode.core.presentation.compose.LoadingView
-import com.spoonofcode.core.presentation.compose.Paddings
-import com.spoonofcode.core.presentation.compose.appbar.TopBar
-import com.spoonofcode.core.presentation.compose.appbar.TopBarAction
-import com.spoonofcode.core.presentation.compose.snackbar.Snackbar
-import com.spoonofcode.core.presentation.compose.snackbar.setSnackbarHostState
-import com.spoonofcode.core.presentation.ext.addIf
-import com.spoonofcode.core.presentation.theme.AppTheme
+import com.spoonofcode.core.designsystem.components.ErrorView
+import com.spoonofcode.core.designsystem.components.LoadingView
+import com.spoonofcode.core.designsystem.components.Paddings
+import com.spoonofcode.core.designsystem.components.appbar.TopBar
+import com.spoonofcode.core.designsystem.components.appbar.TopBarAction
+import com.spoonofcode.core.designsystem.components.snackbar.Snackbar
+import com.spoonofcode.core.designsystem.components.snackbar.setSnackbarHostState
+import com.spoonofcode.core.designsystem.ext.addIf
+import com.spoonofcode.core.designsystem.theme.AppTheme
 import kotlinx.coroutines.flow.SharedFlow
 
 abstract class BaseScreen<VM : BaseViewModel<VS, VA, VE>, VS : BaseViewState, VA : BaseViewAction, VE : BaseViewEvent>(
