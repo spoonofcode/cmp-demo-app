@@ -1,9 +1,10 @@
-import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -12,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -43,6 +43,7 @@ private val navSavedStateConfiguration = SavedStateConfiguration {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainAppScreen() {
     val backStack = rememberNavBackStack(
@@ -63,18 +64,11 @@ fun MainAppScreen() {
             || currentScreen is TaskModuleRoute.TaskOverview
             || currentScreen is ProfileModuleRoute.ProfileDetails
 
-
-//    Scaffold(
-//        containerColor = Color.Green,
-//    ) {
-//        Text("BARTEK")
-//    }
-
     Scaffold(
-        containerColor = Color.Blue,
+        modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            if(showBottomBar) {
-                NavigationBar{
+            if (showBottomBar) {
+                NavigationBar {
                     NavigationBarItem(
                         selected = currentScreen is HomeModuleRoute.Home,
                         onClick = {
@@ -92,7 +86,12 @@ fun MainAppScreen() {
                             backStack.add(TaskModuleRoute.TaskOverview)
                         },
                         label = { Text("Tasks") },
-                        icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = "Tasks") }
+                        icon = {
+                            Icon(
+                                Icons.AutoMirrored.Filled.List,
+                                contentDescription = "Tasks"
+                            )
+                        }
                     )
 
                     NavigationBarItem(
