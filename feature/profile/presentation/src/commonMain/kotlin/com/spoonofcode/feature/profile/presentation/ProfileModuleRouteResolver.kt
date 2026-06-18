@@ -7,6 +7,6 @@ import com.spoonofcode.feature.profile.presentation.details.ProfileDetailsScreen
 
 fun EntryProviderScope<NavKey>.profileModuleRouteResolver() {
     entry<ProfileModuleRoute.ProfileDetails> {
-        ProfileDetailsScreen().Content()
+        ProfileDetailsScreen()
     }
 }

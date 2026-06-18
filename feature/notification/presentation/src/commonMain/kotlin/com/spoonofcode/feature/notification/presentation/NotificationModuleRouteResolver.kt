@@ -8,6 +8,6 @@ import com.spoonofcode.feature.notification.presentation.overview.NotificationOv
 
 fun EntryProviderScope<NavKey>.notificationModuleRouteResolver() {
     entry<NotificationModuleRoute.NotificationOverview> {
-        NotificationOverviewScreen().Content()
+        NotificationOverviewScreen()
     }
 }

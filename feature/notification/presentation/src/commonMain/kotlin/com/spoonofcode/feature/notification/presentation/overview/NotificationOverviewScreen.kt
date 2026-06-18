@@ -2,7 +2,6 @@ package com.spoonofcode.feature.notification.presentation.overview
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,7 +33,8 @@ import com.spoonofcode.core.designsystem.components.Paddings.spaceBetweenListEle
 import com.spoonofcode.core.designsystem.components.Spacers
 import com.spoonofcode.core.designsystem.components.card.Cards
 import com.spoonofcode.core.designsystem.components.text.Texts
-import com.spoonofcode.core.presentation.base.BaseScreen
+import com.spoonofcode.core.presentation.base.StandardScreen
+import com.spoonofcode.core.presentation.base.StandardScreenPreview
 import com.spoonofcode.feature.notification.domain.model.Notification
 import com.spoonofcode.feature.notification.presentation.Res
 import com.spoonofcode.feature.notification.presentation.tab_already_read
@@ -42,128 +42,123 @@ import com.spoonofcode.feature.notification.presentation.tab_new
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
-internal class NotificationOverviewScreen(
-    override val verticalScrollEnable: Boolean = false,
-) : BaseScreen<NotificationOverviewViewModel, NotificationOverviewViewState, NotificationOverviewViewAction, Nothing>() {
-
-    @Composable
-    override fun provideTopAppBarTitle() = "notification"
-
-    @Composable
-    override fun provideViewModel() = koinViewModel<NotificationOverviewViewModel>()
-
-    override fun provideContentPadding() = PaddingValues(
-        start = Paddings.screenPadding,
-        end = Paddings.screenPadding,
-    )
-
-    @Composable
-    override fun ColumnScope.ScreenContent(
-        viewState: NotificationOverviewViewState,
-        onAction: (NotificationOverviewViewAction) -> Unit,
-    ) {
+@Composable
+internal fun NotificationOverviewScreen(
+    viewModel: NotificationOverviewViewModel = koinViewModel(),
+) {
+    StandardScreen(
+        viewModel = viewModel,
+        title = "notification",
+        verticalScrollEnable = false,
+        provideContentPadding = {
+            PaddingValues(
+                start = Paddings.screenPadding,
+                end = Paddings.screenPadding,
+            )
+        }
+    ) { viewState, onAction ->
         NotificationTabs(
             viewState.notifications,
             selectNotification = { onAction(NotificationOverviewViewAction.SelectNotification(it)) },
         )
     }
+}
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun NotificationTabs(
-        notifications: List<Notification>,
-        selectNotification: (String) -> Unit,
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NotificationTabs(
+    notifications: List<Notification>,
+    selectNotification: (String) -> Unit,
+) {
+    val tabs = listOf(
+        TabItem(title = stringResource(Res.string.tab_new)),
+        TabItem(title = stringResource(Res.string.tab_already_read)),
+    )
+
+    var selectedTabIndex by remember { mutableStateOf(0) }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
     ) {
-        val tabs = listOf(
-            TabItem(title = stringResource(Res.string.tab_new)),
-            TabItem(title = stringResource(Res.string.tab_already_read)),
-        )
-
-        var selectedTabIndex by remember { mutableStateOf(0) }
-
-        Column(
-            modifier = Modifier.fillMaxSize()
+        SecondaryTabRow(
+            selectedTabIndex = selectedTabIndex,
         ) {
-            SecondaryTabRow(
-                selectedTabIndex = selectedTabIndex,
-            ) {
-                tabs.forEachIndexed { index, tab ->
-                    Tab(
-                        selected = selectedTabIndex == index,
-                        onClick = { selectedTabIndex = index },
-                        text = { Text(tab.title) },
-                    )
-                }
-            }
-            val notificationsAlreadyReaded = notifications.filter { it.isRead }
-            val notificationsNotReaded = notifications.filter { !(it.isRead) }
-
-            when (selectedTabIndex) {
-                0 -> NotificationTab(notificationsNotReaded, selectNotification)
-                1 -> NotificationTab(notificationsAlreadyReaded, selectNotification)
-            }
-        }
-    }
-
-    data class TabItem(val title: String)
-
-    @Composable
-    fun NotificationTab(notifications: List<Notification>, selectNotification: (String) -> Unit) {
-        Spacers.VerticalBetweenFields()
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
-        ) {
-            items(notifications) { notification ->
-                NotificationItem(
-                    item = notification,
-                    onClick = { selectNotification(notification.id) }
+            tabs.forEachIndexed { index, tab ->
+                Tab(
+                    selected = selectedTabIndex == index,
+                    onClick = { selectedTabIndex = index },
+                    text = { Text(tab.title) },
                 )
             }
         }
+        val notificationsAlreadyReaded = notifications.filter { it.isRead }
+        val notificationsNotReaded = notifications.filter { !(it.isRead) }
+
+        when (selectedTabIndex) {
+            0 -> NotificationTab(notificationsNotReaded, selectNotification)
+            1 -> NotificationTab(notificationsAlreadyReaded, selectNotification)
+        }
     }
+}
 
-    @Composable
-    fun NotificationItem(
-        item: Notification,
-        onClick: () -> Unit,
+data class TabItem(val title: String)
+
+@Composable
+fun NotificationTab(notifications: List<Notification>, selectNotification: (String) -> Unit) {
+    Spacers.VerticalBetweenFields()
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(spaceBetweenListElements)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Cards.ElevatedCard(
-                onClick = onClick
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
+        items(notifications) { notification ->
+            NotificationItem(
+                item = notification,
+                onClick = { selectNotification(notification.id) }
+            )
+        }
+    }
+}
 
-                        Texts.TM(
-                            text = item.title,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                        )
-                        Texts.BM(
-                            text = item.text,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                        )
-                    }
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.outline,
-                        modifier = Modifier.size(24.dp)
+@Composable
+fun NotificationItem(
+    item: Notification,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Cards.ElevatedCard(
+            onClick = onClick
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+
+                    Texts.TM(
+                        text = item.title,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Texts.BM(
+                        text = item.text,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
                     )
                 }
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.outline,
+                    modifier = Modifier.size(24.dp)
+                )
             }
         }
     }
@@ -173,9 +168,20 @@ internal class NotificationOverviewScreen(
 @Preview
 @Composable
 fun NotificationOverviewScreenContentPreview() {
-    NotificationOverviewScreen()
-        .PreviewContent(
-            viewState = NotificationOverviewViewState(),
+    StandardScreenPreview(
+        viewState = NotificationOverviewViewState(),
+        title = "notification",
+        provideContentPadding = {
+            PaddingValues(
+                start = Paddings.screenPadding,
+                end = Paddings.screenPadding,
+            )
+        }
+    ) { viewState ->
+        NotificationTabs(
+            viewState.notifications,
+            selectNotification = { },
         )
+    }
 }
 // endregion

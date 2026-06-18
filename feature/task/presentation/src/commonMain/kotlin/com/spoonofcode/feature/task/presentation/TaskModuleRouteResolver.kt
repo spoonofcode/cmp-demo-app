@@ -9,14 +9,14 @@ import com.spoonofcode.feature.task.presentation.overview.TaskOverviewScreen
 
 fun EntryProviderScope<NavKey>.taskModuleRouteResolver() {
     entry<TaskModuleRoute.TaskOverview> {
-        TaskOverviewScreen().Content()
+        TaskOverviewScreen()
     }
 
     entry<TaskModuleRoute.TaskDetails> {
-        TaskDetailsScreen(taskId = it.taskId).Content()
+        TaskDetailsScreen(taskId = it.taskId)
     }
 
     entry<TaskModuleRoute.TaskEdit> {
-        TaskEditScreen().Content()
+        TaskEditScreen()
     }
 }
