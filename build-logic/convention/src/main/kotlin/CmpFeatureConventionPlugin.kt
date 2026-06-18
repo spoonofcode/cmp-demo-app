@@ -19,7 +19,7 @@ class CmpFeatureConventionPlugin : Plugin<Project> {
                     getByName("commonMain").dependencies {
                         implementation(project(":core:presentation"))
                         implementation(project(":core:data"))
-                        // implementation(project(":feature:appnavigation"))
+                        implementation(project(":feature:appnavigation"))
 
                         // Kotlin & Resources
                         implementation(libs.findLibrary("kotlin-stdlib").get())
@@ -50,6 +50,7 @@ class CmpFeatureConventionPlugin : Plugin<Project> {
 
                         // Navigation
                         implementation(libs.findLibrary("navigation-compose").get())
+                        implementation(libs.findLibrary("navigation3-runtime").get())
 
                         // Dependency Injection (Koin)
                         implementation(libs.findLibrary("koin-core").get())
