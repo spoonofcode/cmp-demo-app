@@ -4,9 +4,12 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.spoonofcode.feature.appnavigation.ProfileModuleRoute
 import com.spoonofcode.feature.profile.presentation.details.ProfileDetailsScreen
+import org.koin.compose.viewmodel.koinViewModel
 
 fun EntryProviderScope<NavKey>.profileModuleRouteResolver() {
     entry<ProfileModuleRoute.ProfileDetails> {
-        ProfileDetailsScreen().Content()
+        ProfileDetailsScreen(
+            viewModel = koinViewModel()
+        )
     }
 }
